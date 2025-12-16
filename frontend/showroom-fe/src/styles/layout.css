@@ -1,0 +1,141 @@
+/* pastikan root & body memenuhi tinggi dan tidak bisa discroll */
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* nonaktifkan scrollbar global */
+}
+
+/* Main layout container tetap 100vh dan tidak overflow */
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Main content area uses internal scrolling */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  height: 100%;
+  padding: 12px 24px; /* gunakan padding yang simetris, hindari margin besar pada child */
+  transition: padding 240ms ease;
+  margin-left: var(--sidebar-w, 260px);
+  background: var(--app-bg);
+  overflow: hidden; /* jangan biarkan body menangani scroll */
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments for 1366x768 */
+@media (max-width: 1400px) {
+  .main-content {
+    padding: 10px 16px;
+  }
+  
+  .topbar-wrapper {
+    padding: 8px 16px;
+  }
+  
+  .content-area {
+    padding: 12px 16px;
+  }
+  
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    margin-left: var(--sidebar-w, 80px); /* Collapsed sidebar width */
+    padding: 10px 12px;
+  }
+  
+  .topbar-wrapper {
+    padding: 6px 12px;
+  }
+  
+  .content-area {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-container {
+    position: relative;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  /* Adjust card grid on mobile */
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dashboard cards grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Card styling */
+.dashboard-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Topbar wrapper places a rounded card across the top of main content */
+.topbar-wrapper {
+  padding: 8px 24px; /* kurangi padding kanan/kiri agar tidak menambah whitespace */
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-start; /* mulai dari kiri (dekat sidebar) */
+  box-sizing: border-box;
+}
+
+/* Make the inner SearchBar fill available area between left/right padding */
+.topbar-wrapper > .searchbar-wrapper {
+  width: calc(100% - 0px); /* searchbar uses full width of wrapper area */
+  max-width: none;
+}
+
+/* Align content area to match same left/right margins */
+.content-area {
+  flex: 1 1 auto;
+  padding: 14px 24px; /* kecilkan padding kanan/kiri */
+  box-sizing: border-box;
+  margin: 0; /* hilangkan margin horizontal yang menyebabkan whitespace kanan */
+  width: 100%;
+  overflow-y: auto; /* scrolling internal */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.content-area::-webkit-scrollbar { display: none; }
+
+/* fallback responsive behavior */
+@media (max-width: 1280px) {
+  .topbar-container { padding-left: 20px; padding-right: 20px; }
+  .content-area { padding-left: 12px; padding-right: 12px; }
+}
+@media (max-width: 1024px) {
+  .topbar-wrapper { padding-left: 14px; padding-right: 14px; justify-content: center; }
+  .content-area { max-width: 100%; margin: 0; padding: 10px; }
+}
+@media (max-width: 820px) {
+  .topbar-wrapper { padding: 10px; }
+  .topbar-container { border-radius: 8px; padding: 8px; width: 100%; }
+  .content-area { padding: 10px; width: 100%; margin: 0 12px; }
+}

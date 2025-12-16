@@ -1,0 +1,97 @@
+:root{
+  --mm-control-bg: rgba(255,255,255,0.96);
+  --mm-control-border: rgba(0,0,0,0.06);
+  --mm-control-shadow: 0 6px 18px rgba(2,6,23,0.06);
+}
+
+.mm-controls { display:flex; align-items:center; gap:8px; }
+.mm-icon-btn { display:inline-grid; place-items:center; width:36px; height:36px; border-radius:8px; background:var(--mm-control-bg); border:1px solid var(--mm-control-border); box-shadow:var(--mm-control-shadow); cursor:pointer; }
+.mm-icon { width:16px; height:16px; opacity:.9; }
+
+/* Search inline dropdown */
+.mm-search { position:relative; }
+.mm-search-input { position:absolute; left:0; top: calc(100% + 8px); min-width:220px; padding:8px 12px; border-radius:8px; border:1px solid var(--mm-control-border); background:var(--mm-control-bg); box-shadow:var(--mm-control-shadow); display:flex; gap:8px; align-items:center; }
+.mm-search-input input { border:none; outline:none; background:transparent; width:180px; color: var(--search-input-color); }
+.mm-search-input input::placeholder { color: var(--search-placeholder); opacity: 0.9; }
+
+/* For dark theme, ensure the search input text remains dark (input uses a light bg) */
+:root[data-theme="dark"] .mm-search-input input {
+  color: #000 !important;
+}
+:root[data-theme="dark"] .mm-search-input input::placeholder {
+  color: rgba(0,0,0,0.45) !important;
+}
+
+/* animate search dropdown like filter panel */
+.mm-search-input {
+  transform-origin: top left;
+  animation: filterPanelShow 0.18s ease-out;
+}
+
+/* Filter dropdown */
+.mm-filter { position:relative; }
+.mm-filter-panel { position:absolute; top: calc(100% + 8px); left:0; min-width:220px; width:260px; max-width:420px; background:var(--mm-control-bg); border-radius:10px; border:1px solid var(--mm-control-border); box-shadow:var(--mm-control-shadow); padding:10px; display:flex; flex-direction:column; gap:8px; z-index:1200; overflow:hidden; color: var(--panel-text); }
+.mm-filter-types { display:flex; gap:6px; align-items:flex-start; overflow-x:auto; padding-bottom:6px; }
+.mm-filter-types .mm-filter-type { white-space:nowrap; display:inline-flex; }
+/* hide horizontal scrollbar for the filter tabs */
+.mm-filter-types::-webkit-scrollbar { height: 6px; }
+.mm-filter-types::-webkit-scrollbar-thumb { background: transparent; }
+.mm-filter-types { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+
+/* drag-to-scroll affordance */
+.mm-filter-types { cursor: grab; }
+.mm-filter-types.is-dragging { cursor: grabbing; }
+.mm-filter-type { padding:6px 8px; border-radius:8px; cursor:pointer; font-size:13px; border:1px solid transparent; }
+.mm-filter-type.active { background: color-mix(in srgb, var(--accent, #16a34a) 12%, transparent); border-color: color-mix(in srgb, var(--accent, #16a34a) 12%, transparent); }
+
+/* hover and focus styles for better affordance */
+.mm-filter-type:hover, .mm-filter-type:focus {
+  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+  transform: translateY(-2px);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+/* ensure focusable via keyboard */
+.mm-filter-type:focus { outline: 2px solid color-mix(in srgb, var(--accent, #16a34a) 20%, transparent); }
+/* value chip inside filter-type */
+.mm-filter-type-val { margin-left:6px; background:rgba(0,0,0,0.04); padding:3px 8px; border-radius:999px; font-size:12px; cursor:pointer; border:none; }
+
+.mm-filter-items { max-height:200px; overflow:auto; display:flex; flex-direction:column; gap:6px; padding-right:6px; }
+/* visually hide scrollbar but keep scroll functionality */
+.mm-filter-items::-webkit-scrollbar { width: 6px; height:6px; }
+.mm-filter-items::-webkit-scrollbar-thumb { background: transparent; }
+.mm-filter-items::-webkit-scrollbar-track { background: transparent; }
+/* Firefox */
+.mm-filter-items { scrollbar-width: thin; scrollbar-color: transparent transparent; }
+.mm-filter-item { display:flex; align-items:center; gap:8px; padding:6px; border-radius:8px; cursor:pointer; }
+.mm-filter-item input { width:16px; height:16px; border-radius:50%; }
+/* clear button next to filter controls */
+.mm-filter-clear { background:var(--mm-control-bg); border:1px solid var(--mm-control-border); padding:6px 10px; border-radius:8px; cursor:pointer; }
+
+/* adjust placement when in top-right area */
+.mobil-view-topbar-right .mm-controls { margin-right: 6px; }
+
+/* small responsive tweak */
+@media (max-width:720px){ .mm-search-input{ min-width:160px; } .mm-filter-panel{ right:unset; left:0; width:200px; } }
+
+/* badge for active filters */
+.mm-filter-badge { position: absolute; top: -6px; right: -6px; min-width:18px; height:18px; padding:0 5px; background: var(--accent, #16a34a); color: #fff; font-size:12px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center; }
+
+/* when panel is rendered fixed (portal) use this base class */
+.mm-filter-panel-fixed { 
+  position: fixed;
+  overflow: hidden;
+  transform-origin: top left;
+  animation: filterPanelShow 0.2s ease-out;
+}
+
+@keyframes filterPanelShow {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

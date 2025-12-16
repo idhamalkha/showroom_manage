@@ -1,0 +1,77 @@
+/* wrapper positioned absolute by parent layout (kept small & accessible) */
+.select-checkbox {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 20;
+  width: 32px;
+  height: 32px;
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+/* native input visually hidden but stays keyboard-accessible */
+.select-checkbox input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* custom box */
+.select-checkbox .select-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 8px;
+  background: var(--muted, #fff);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 2px 6px rgba(2,6,23,0.06);
+  transition: all .12s ease;
+  display: inline-block;
+  position: relative;
+}
+
+/* checked state visual */
+.select-checkbox input:checked + .select-box {
+  background: var(--accent, #16a34a);
+  border-color: color-mix(in srgb, var(--accent, #16a34a) 88%, black 6%);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent, #16a34a) 18%, rgba(2,6,23,0.06));
+}
+
+/* checkmark (small subtle) */
+.select-checkbox .select-box::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'><path fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M1 5.2l3.2 3L11 1'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  transform: scale(.8);
+  transition: opacity .12s ease, transform .12s ease;
+}
+
+.select-checkbox input:checked + .select-box::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* disabled hint */
+.select-checkbox input:disabled + .select-box {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+/* CARD selected styles (apply same class names used in your components) */
+.mobil-card.selected,
+.hrd-card-employee.selected {
+  border: 2px solid var(--accent, #16a34a);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.14);
+  transform: translateY(-2px);
+  transition: box-shadow .18s ease, transform .12s ease, border .12s ease;
+}

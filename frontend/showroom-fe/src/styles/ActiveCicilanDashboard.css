@@ -1,0 +1,587 @@
+/* ActiveCicilanDashboard - Modern, Elegant, Minimalist Design */
+
+/* Keyframe animations */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Main container */
+.active-cicilan-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+/* Summary Cards Grid */
+.active-cicilan-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.active-cicilan-stat-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1.75rem;
+  transition: all 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  animation: slideUpFade 600ms ease-out;
+  animation-fill-mode: both;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.active-cicilan-stat-card:nth-child(1) { animation-delay: 80ms; }
+.active-cicilan-stat-card:nth-child(2) { animation-delay: 160ms; }
+.active-cicilan-stat-card:nth-child(3) { animation-delay: 240ms; }
+.active-cicilan-stat-card:nth-child(4) { animation-delay: 320ms; }
+
+.active-cicilan-stat-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 12px 32px rgba(2, 6, 23, 0.08);
+  transform: translateY(-8px) scale(1.02);
+  background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+}
+
+.active-cicilan-stat-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.active-cicilan-stat-card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active-cicilan-stat-icon {
+  width: 24px;
+  height: 24px;
+  color: #9ca3af;
+  flex-shrink: 0;
+  transition: color 280ms ease, transform 280ms ease;
+}
+
+.active-cicilan-stat-card:hover .active-cicilan-stat-icon {
+  color: #3b82f6;
+  transform: translateY(-2px);
+}
+
+.active-cicilan-stat-value {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+}
+
+.active-cicilan-stat-value-currency {
+  font-size: clamp(0.875rem, 3.5vw, 1.5rem);
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  word-break: break-word;
+}
+
+.active-cicilan-stat-meta {
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+/* Toolbar */
+.active-cicilan-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 2.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: slideUpFade 600ms ease-out 400ms both;
+}
+
+.active-cicilan-sort-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.active-cicilan-sort-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.active-cicilan-sort-btn {
+  padding: 0.625rem 1rem;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.active-cicilan-sort-btn:hover {
+  border-color: #9ca3af;
+  background: #f3f4f6;
+}
+
+.active-cicilan-sort-btn.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Cards Grid */
+.active-cicilan-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.75rem;
+}
+
+/* Individual Card */
+.active-cicilan-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  animation: slideUpFade 600ms ease-out;
+  animation-fill-mode: both;
+  display: flex;
+  flex-direction: column;
+}
+
+.active-cicilan-card:nth-child(1) { animation-delay: 480ms; }
+.active-cicilan-card:nth-child(2) { animation-delay: 560ms; }
+.active-cicilan-card:nth-child(3) { animation-delay: 640ms; }
+.active-cicilan-card:nth-child(n+4) { animation-delay: 720ms; }
+
+.active-cicilan-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 16px 48px rgba(2, 6, 23, 0.12);
+  transform: translateY(-12px);
+}
+
+/* Card Header */
+.active-cicilan-card-header {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.96) 0%, rgba(37, 99, 235, 0.96) 100%);
+  color: #ffffff;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.active-cicilan-card-header::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  transition: background 280ms ease;
+}
+
+.active-cicilan-card:hover .active-cicilan-card-header::after {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 65%);
+}
+
+.active-cicilan-card-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+.active-cicilan-card-number {
+  font-size: 0.7rem;
+  font-weight: 600;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.active-cicilan-card-name {
+  font-size: 1.3125rem;
+  font-weight: 700;
+  margin-top: 0.375rem;
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+}
+
+.active-cicilan-card-progress {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.active-cicilan-card-progress-value {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.8px;
+}
+
+.active-cicilan-card-progress-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  opacity: 0.85;
+  margin-top: 0.375rem;
+  text-transform: lowercase;
+}
+
+/* Card Content */
+.active-cicilan-card-content {
+  padding: 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Progress Bar */
+.active-cicilan-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.active-cicilan-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active-cicilan-progress-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.active-cicilan-progress-counter {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #9ca3af;
+}
+
+.active-cicilan-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.active-cicilan-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+  position: relative;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.active-cicilan-progress-fill.progress-orange {
+  background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+}
+
+.active-cicilan-progress-fill.progress-yellow {
+  background: linear-gradient(90deg, #eab308 0%, #ca8a04 100%);
+  box-shadow: 0 2px 8px rgba(234, 179, 8, 0.3);
+}
+
+.active-cicilan-progress-fill.progress-green {
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.active-cicilan-progress-fill.progress-red {
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+/* Stats Grid */
+.active-cicilan-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.active-cicilan-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.active-cicilan-stat-item-label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.active-cicilan-stat-item-value {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+/* Status Footer */
+.active-cicilan-status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.active-cicilan-status-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.active-cicilan-status.status-completed {
+  color: #059669;
+}
+
+.active-cicilan-status.status-pending {
+  color: #d97706;
+}
+
+/* Empty State */
+.active-cicilan-empty {
+  background: #dbeafe;
+  border: 2px solid #93c5fd;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.active-cicilan-empty-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.5rem;
+  color: #0284c7;
+}
+
+.active-cicilan-empty-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #075985;
+  margin-bottom: 0.5rem;
+}
+
+.active-cicilan-empty-description {
+  font-size: 0.875rem;
+  color: #0c4a6e;
+}
+
+/* Dark Theme Support */
+.dark .active-cicilan-stat-card {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-color: #374151;
+}
+
+.dark .active-cicilan-stat-card:hover {
+  border-color: #4b5563;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark .active-cicilan-stat-label {
+  color: #d1d5db;
+}
+
+.dark .active-cicilan-stat-value,
+.dark .active-cicilan-stat-value-currency {
+  color: #f3f4f6;
+}
+
+.dark .active-cicilan-stat-icon {
+  color: #6b7280;
+}
+
+.dark .active-cicilan-stat-card:hover .active-cicilan-stat-icon {
+  color: #60a5fa;
+}
+
+.dark .active-cicilan-toolbar {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.dark .active-cicilan-sort-label {
+  color: #e5e7eb;
+}
+
+.dark .active-cicilan-sort-btn {
+  background: #111827;
+  border-color: #374151;
+  color: #e5e7eb;
+}
+
+.dark .active-cicilan-sort-btn:hover {
+  background: #374151;
+  border-color: #4b5563;
+}
+
+.dark .active-cicilan-card {
+  background: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark .active-cicilan-card:hover {
+  border-color: #4b5563;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.dark .active-cicilan-progress-label {
+  color: #e5e7eb;
+}
+
+.dark .active-cicilan-progress-counter {
+  color: #9ca3af;
+}
+
+.dark .active-cicilan-progress-bar {
+  background: #374151;
+}
+
+.dark .active-cicilan-stats-grid {
+  border-color: #374151;
+}
+
+.dark .active-cicilan-stat-item-label {
+  color: #9ca3af;
+}
+
+.dark .active-cicilan-stat-item-value {
+  color: #f3f4f6;
+}
+
+.dark .active-cicilan-empty {
+  background: #1e3a8a;
+  border-color: #3b82f6;
+}
+
+.dark .active-cicilan-empty-title {
+  color: #93c5fd;
+}
+
+.dark .active-cicilan-empty-description {
+  color: #60a5fa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .active-cicilan-summary {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .active-cicilan-stat-card {
+    padding: 1.25rem;
+  }
+
+  .active-cicilan-stat-value {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+
+  .active-cicilan-stat-value-currency {
+    font-size: clamp(0.75rem, 3vw, 1.25rem);
+  }
+
+  .active-cicilan-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .active-cicilan-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .active-cicilan-stat-card {
+    padding: 1rem;
+  }
+
+  .active-cicilan-stat-value {
+    font-size: clamp(1.125rem, 3.5vw, 1.5rem);
+  }
+
+  .active-cicilan-stat-value-currency {
+    font-size: clamp(0.7rem, 2.5vw, 1rem);
+  }
+
+  .active-cicilan-card-header {
+    padding: 1rem;
+  }
+
+  .active-cicilan-card-content {
+    padding: 1rem;
+  }
+}

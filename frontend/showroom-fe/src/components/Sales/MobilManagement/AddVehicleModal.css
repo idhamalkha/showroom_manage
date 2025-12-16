@@ -1,0 +1,288 @@
+/* Modal overlay */
+.avm-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(6, 12, 18, 0.48);
+  z-index: 2600;
+}
+
+/* Modal */
+.avm-modal {
+  background: var(--card-bg, #ffffff);
+  border-radius: 12px;
+  padding: 26px;
+  width: 92%;
+  max-width: 920px;
+  box-shadow: 0 18px 60px rgba(2,6,23,0.28);
+  color: var(--panel-text, #0f172a);
+  box-sizing: border-box;
+}
+
+/* wide layout - two columns on desktop */
+.avm-wide-modal {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .avm-wide-modal { grid-template-columns: 1fr; max-width: 560px; padding: 20px; }
+}
+
+/* close button */
+.avm-modal-close {
+  position: absolute;
+  right: 18px;
+  top: 14px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+/* form labels / inputs */
+.avm-form-label { display:block; font-size:13px; color:var(--muted); margin-bottom:8px; }
+/* tightened label spacing for alignment */
+.avm-form-label { margin-bottom:6px; }
+.avm-form-label + .avm-select-btn,
+.avm-form-label + div > .avm-select-btn { margin-top:6px; display:block; }
+.avm-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: var(--card-bg);
+  box-sizing: border-box;
+  font-size:14px;
+  color: var(--panel-text);
+}
+
+.avm-color-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.avm-color-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 32px;
+}
+
+.avm-color-chip {
+  padding: 6px 12px;
+  border-radius: 16px;
+  background: var(--panel-bg);
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.avm-color-chip.primary {
+  background: var(--accent);
+  color: white;
+}
+
+.avm-color-primary-badge {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.2);
+}
+
+.avm-color-empty {
+  padding: 12px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 14px;
+}
+
+.avm-form-section {
+  margin: 16px 0;
+}
+
+/* ensure selects and inputs have the same height for perfect grid alignment */
+.avm-select-btn, .avm-input {
+  min-height: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* select button */
+.avm-select-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  min-width: 180px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.avm-select-label { flex:1; text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.avm-select-caret { color: var(--muted); margin-left: 8px; }
+
+/* list */
+.avm-select-list {
+  position: absolute;
+  z-index: 2700;
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 18px 40px rgba(8,15,25,0.12);
+  border-radius: 10px;
+  overflow: auto;
+  padding: 6px;
+  box-sizing: border-box;
+  /* hide scrollbar visually but keep scroll behaviour */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.avm-select-list::-webkit-scrollbar { display: none; height: 0; width: 0; }
+
+/* list item */
+.avm-select-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: var(--panel-text);
+  cursor: pointer;
+  border-radius: 8px;
+}
+.avm-select-item:hover { background: rgba(0,0,0,0.04); color: var(--accent, #16a34a); }
+
+/* avoid overlap: ensure popover appears within modal area by default */
+.avm-modal .avm-select-list { left: 12px; right: auto; max-width: calc(100% - 24px); }
+
+/* upload button */
+.avm-upload-btn {
+  display:inline-block;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: linear-gradient(180deg,var(--accent, #16a34a) 0%, color-mix(in srgb,var(--accent, #16a34a) 80%, black 10%) 100%);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(16,185,129,0.12);
+}
+
+/* modal actions */
+.avm-modal-actions {
+  display:flex;
+  gap:12px;
+  justify-content:flex-end;
+  grid-column: 1 / -1;
+  margin-top: 6px;
+}
+
+/* keep actions in preview column aligned and theme-aware */
+.avm-preview-column .btn {
+  min-width: 120px;
+}
+.avm-preview-column { padding-left: 8px; }
+
+/* ensure action row uses subtle background in both themes */
+.avm-preview-column > div {
+  background: transparent;
+}
+
+/* Dark theme: brighten borders so controls 'pop' more */
+body[data-theme="dark"] .avm-input,
+body[data-theme="dark"] .avm-select-btn,
+body[data-theme="dark"] .avm-upload-btn {
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* Small visual lift for buttons in dark mode */
+body[data-theme="dark"] .avm-upload-btn { box-shadow: 0 6px 20px rgba(16,185,129,0.06); }
+
+/* small polish */
+.avm-select-list.upwards { transform-origin: bottom right; }
+
+/* media grid: Foto + Video side-by-side */
+.avm-media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+  width: 100%;
+  margin-top: 6px;
+  /* remove grid-column:1/-1 so it sits in normal flow under previous 2-column rows */
+}
+@media (max-width: 900px) {
+  .avm-media-grid { grid-template-columns: 1fr; }
+}
+
+/* ensure upload button and preview stack nicely */
+.avm-media-row { display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
+
+.avm-media-preview img,
+.avm-media-preview video {
+  max-width: 100%;
+  border-radius: 8px;
+  display: block;
+  margin-top: 6px;
+}
+
+/* keep upload buttons visually consistent and not full-width to match design */
+.avm-upload-btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  min-width: 140px;
+}
+
+/* small spacing for actions area preserved */
+.avm-modal-actions { margin-top: 12px; }
+
+/* placeholder vs normal label color for select button */
+.avm-select-label { color: var(--panel-text); }
+.avm-select-label.placeholder { color: var(--muted); }
+
+/* Media grid: do not force full-width (so video aligns under second column).
+   Keep two columns so Foto berada di kolom 1, Video di kolom 2. */
+.avm-media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.avm-preview-colors {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.avm-color-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.avm-color-swatch:hover {
+  transform: scale(1.1);
+}

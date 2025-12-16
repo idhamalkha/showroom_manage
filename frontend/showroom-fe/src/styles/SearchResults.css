@@ -1,0 +1,110 @@
+/* Search Highlight Styles */
+.search-highlight {
+  background-color: #fef08a;
+  transition: all 0.3s ease;
+}
+
+.search-highlight-active {
+  background-color: #fbbf24;
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.2);
+}
+
+.search-results-popover {
+  position: fixed;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 400px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.search-results-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  background: #f9fafb;
+}
+
+.search-results-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-result-item {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-result-item:hover {
+  background-color: #f3f4f6;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-section {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.search-result-text {
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.search-result-highlight {
+  background-color: #fbbf24;
+  font-weight: 600;
+  padding: 0 2px;
+}
+
+.search-empty {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+/* Result Type Badges */
+.search-result-type-badge {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.search-result-type-badge.text {
+  background-color: #dbeafe;
+  color: #0c4a6e;
+}
+
+.search-result-type-badge.attribute {
+  background-color: #e0e7ff;
+  color: #3730a3;
+}
+
+.search-result-type-badge.brand {
+  background-color: #fce7f3;
+  color: #831843;
+}

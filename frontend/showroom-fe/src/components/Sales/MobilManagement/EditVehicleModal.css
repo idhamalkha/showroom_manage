@@ -1,0 +1,316 @@
+/* Styles specific to the Edit vehicle modal preview and layout */
+.avm-edit-modal {
+  display: grid;
+  grid-template-columns: 1fr 320px; /* form | preview (narrowed) */
+  gap: 20px;
+  max-width: 1100px;
+}
+
+.avm-preview-column {
+  position: relative;
+}
+
+.avm-preview-card {
+  background: var(--panel-bg, #fff);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  padding: 12px;
+  /* limit card height so it doesn't push actions off-screen */
+  max-height: 420px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+  overflow: hidden;
+}
+
+.avm-preview-img-wrap {
+  height: 140px; /* slightly smaller so preview card is more compact */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+}
+
+.avm-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avm-preview-empty {
+  color: var(--muted-text, #8a8a8a);
+  font-size: 14px;
+}
+
+.avm-preview-meta {
+  padding: 4px 2px;
+}
+
+/* Color chips container and chip styles - responsive/wrapping */
+.avm-color-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.avm-color-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.08); /* subtle green by default for active */
+  color: var(--panel-text, #0f172a);
+  font-size: 13px;
+  line-height: 18px;
+  box-shadow: 0 2px 6px rgba(2,6,23,0.04);
+}
+
+.avm-color-chip.disabled {
+  opacity: 0.6;
+  background-color: var(--input-disabled-bg, #f3f4f6);
+}
+
+.avm-color-primary-badge {
+  background: linear-gradient(180deg,#10b981,#059669);
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  margin-left: 4px;
+}
+
+.color-enabled-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.color-enabled-toggle input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* If many chips exist, ensure the chip list wraps nicely and doesn't overflow the modal */
+.avm-color-chips { max-width: 100%; }
+
+@media (max-width: 700px) {
+  .avm-color-chips { gap: 6px; }
+  .avm-color-chip { padding: 6px 10px; font-size: 12px; }
+  .avm-color-primary-badge { padding: 3px 6px; font-size: 11px; }
+}
+
+
+.avm-preview-title {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.avm-preview-sub {
+  color: var(--muted-text, #6b7280);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.avm-preview-tags {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+/* enforce consistent control height for alignment */
+.avm-select-btn, .avm-input { min-height: 44px; height: 44px; display:flex; align-items:center; }
+
+/* make form labels use vertical gap so label text and control spacing is consistent */
+.avm-form-label {
+  font-size: 13px;
+  color: var(--muted-text, #6b7280);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* unify paddings and font metrics for select button and inputs so they align exactly */
+.avm-select-btn {
+  padding: 0 12px;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 20px;
+  gap: 8px;
+}
+.avm-select-label { font-size: 14px; line-height: 20px; }
+.avm-select-caret { margin-left: auto; opacity: 0.7; }
+.avm-input { padding: 0 12px; box-sizing: border-box; font-size: 14px; line-height: 20px; }
+
+.avm-right-fields { margin-top: 12px; display: block; }
+.avm-right-fields .avm-form-label { font-size: 13px; color: var(--muted-text, #6b7280); }
+.avm-right-fields div { background: transparent; padding: 6px 0; }
+
+.avm-right-fields select.avm-input, .avm-right-fields textarea.avm-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: var(--card-bg);
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.avm-tag {
+  background: rgba(0,0,0,0.05);
+  color: var(--panel-text, #111827);
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 999px;
+}
+
+/* Dark theme: brighten borders so controls pop */
+body[data-theme="dark"] .avm-input,
+body[data-theme="dark"] .avm-select-btn,
+body[data-theme="dark"] .avm-upload-btn {
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* ensure form controls stretch nicely */
+.avm-edit-modal .avm-row {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 930px) {
+  .avm-edit-modal {
+    grid-template-columns: 1fr;
+  }
+  .avm-preview-column { order: -1; }
+}
+
+/* New layout helpers */
+.avm-edit-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.avm-title { font-size: 18px; font-weight: 700; }
+
+.avm-edit-body {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 20px;
+  /* contain overall modal height; left column will scroll internally */
+  max-height: calc(100vh - 160px);
+  overflow: hidden; /* clip children so internal scrolling works */
+}
+
+.avm-form-col {
+  /* left column: scrollable region */
+  overflow: auto;
+  padding-right: 6px;
+  max-height: calc(100vh - 240px);
+}
+
+.avm-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* ensure grid children stack label above control consistently */
+.avm-grid-2 > div, .avm-grid-2 > label {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* make preview column layout not push actions off canvas */
+.avm-preview-column {
+  /* right column: fixed/anchored preview that doesn't scroll with the form */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: flex-start;
+  position: sticky;
+  top: 24px; /* keep a small gap from modal header */
+  /* prevent the preview column from creating its own scroll bar */
+  overflow: visible;
+  padding-bottom: 12px; /* space for sticky actions */
+}
+.avm-preview-card { flex: 0 0 auto; }
+.avm-right-fields { margin-top: 12px; display: block; flex: 0 0 auto; }
+
+/* hide visual scrollbars but keep scrolling functional */
+.avm-preview-column, .avm-form-col, .avm-select-list {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.avm-preview-column::-webkit-scrollbar, .avm-form-col::-webkit-scrollbar, .avm-select-list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+  width: 0;
+  height: 0;
+}
+
+/* ensure action area in preview sits at bottom by using sticky positioning */
+.avm-preview-column .actions-row {
+  margin-top: 8px;
+  display:flex;
+  gap:12px;
+  justify-content: center; /* centered under the preview card */
+  position: sticky;
+  bottom: 18px; /* slightly lifted from absolute bottom for the check area */
+  padding: 6px 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* style buttons in preview to match Add modal visual language */
+.avm-preview-column .btn {
+  border-radius: 8px;
+  padding: 8px 12px; /* smaller */
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 6px 14px rgba(2,6,23,0.12);
+  min-width: 96px; /* compact but consistent */
+}
+.avm-preview-column .btn.danger { background: linear-gradient(180deg,#ef4444,#dc2626); color: #fff; border: none; }
+.avm-preview-column .btn.primary { background: linear-gradient(180deg,#10b981,#059669); color: #fff; border: none; }
+.avm-preview-column .btn.neutral { background: rgba(0,0,0,0.18); color: #fff; border: 1px solid rgba(255,255,255,0.03); }
+
+/* reduce label wrapping for 'Hapus Mobil' on small buttons */
+.avm-preview-column .btn.danger { white-space: nowrap; }
+
+/* scope modal rules to edit-modal only so AddVehicleModal keeps original styles */
+.avm-modal.avm-edit-modal { /* ensure edit modal content can scroll internally */
+  max-height: 90vh;
+  display: block;
+  padding: 18px;
+}
+
+.avm-modal.avm-edit-modal .avm-modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding-top: 10px;
+  /* keep actions visible */
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,0.6));
+  padding-bottom: 8px;
+}
+
+/* Adjust for dark theme (if using body[data-theme]) - keep subtle gradient */
+body[data-theme="dark"] .avm-modal.avm-edit-modal .avm-modal-actions { background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.45)); }
+
+/* make select button and inputs stretch full width inside grid columns */
+.avm-form-col .avm-select-btn, .avm-form-col .avm-input, .avm-form-col .avm-upload-btn { width: 100%; }
+
+@media (max-width: 930px) {
+  .avm-edit-body { grid-template-columns: 1fr; }
+  .avm-preview-column { order: -1; }
+  .avm-modal-actions { position: static; background: none; }
+}

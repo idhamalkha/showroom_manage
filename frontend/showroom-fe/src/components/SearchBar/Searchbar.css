@@ -1,0 +1,376 @@
+/* minimal styles — uses tailwind-like spacing but pure CSS to be independent */
+
+.searchbar-wrapper {
+  position: relative; /* anchor popovers if needed and avoid layout jumps */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 10px; /* smaller */
+  border-radius: 10px;
+  background: var(--panel-bg);
+  /* very subtle shadow or none */
+  box-shadow: 0 4px 10px rgba(2,10,18,0.04);
+  height: 50px;
+  width: 100%;
+  box-sizing: border-box;
+
+  /* Smooth theme transition to avoid blink */
+  transition: background 360ms cubic-bezier(.2,.9,.2,1), color 360ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* left: search input */
+.searchbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+.search-icon {
+  font-size: 16px;
+  color: rgba(0,0,0,0.28);
+  margin-left: 4px;
+}
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 6px 6px;
+  width: 100%;
+  color: var(--panel-text);
+  font-size: 13px;
+  min-width: 0;
+}
+
+/* right: controls */
+.searchbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+}
+
+/* icon button sizes reduced */
+.icon-btn, .menu-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  width: 36px;
+  border-radius: 9px;
+  transition: background .12s ease, transform .12s ease;
+}
+.icon-btn:hover, .menu-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(0,0,0,0.03);
+}
+
+/* smaller badge */
+.notif-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  line-height: 11px;
+  padding: 2px 5px;
+  border-radius: 999px;
+}
+
+/* avatar circle slightly smaller */
+.menu-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  margin-right: 6px;
+  box-shadow: 0 4px 10px rgba(2,10,18,0.06);
+}
+
+/* popover tweaks: keep compact */
+.popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--card-bg);
+  color: var(--panel-text);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(3,10,18,0.12);
+  min-width: 180px;
+  z-index: 602; /* above other UI */
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.04);
+  transform-origin: top right;
+  opacity: 0;
+  transform: translateY(-6px) scale(.98);
+  animation: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+.popover[role="menu"] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* notifier popover slightly offset so it doesn't overlap bell badge */
+.notif-popover { right: 0; min-width: 240px; }
+
+/* subtle pop-in keyframe (optional) */
+@keyframes popIn {
+  from { transform: translateY(-6px) scale(.98); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ensure buttons transition colors with theme too */
+.icon-btn, .menu-btn {
+  transition: background 220ms ease, color 220ms ease, transform .12s ease;
+}
+
+/* ensure svg/icons use currentColor */
+.popover svg, .icon-btn svg, .menu-btn svg {
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+/* reduce large shadow flicker on theme change */
+.popover, .searchbar-wrapper {
+  box-shadow: 0 6px 18px rgba(2,10,18,0.06);
+}
+
+/* popover fixed positioning visuals + arrow + improved list styling */
+
+.popover--fixed {
+  position: fixed; /* set via inline style top/left from TSX */
+  z-index: 1002;
+  min-width: 220px;
+  max-width: 360px;
+  border-radius: 10px;
+  background: var(--card-bg);
+  color: var(--panel-text);
+  box-shadow: 0 14px 36px rgba(3,10,18,0.12);
+  border: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: transform 160ms ease, opacity 160ms ease;
+  padding: 6px 0;
+}
+
+/* small arrow pointing to button */
+.popover--fixed .popover-arrow {
+  position: absolute;
+  top: -6px;
+  right: 16px; /* default arrow near right aligned popovers */
+  width: 12px;
+  height: 12px;
+  background: var(--card-bg);
+  transform: rotate(45deg);
+  border-left: 1px solid rgba(0,0,0,0.04);
+  border-top: 1px solid rgba(0,0,0,0.03);
+  box-shadow: -2px -2px 6px rgba(3,10,18,0.02);
+  border-radius: 2px;
+}
+
+/* header and list */
+.popover-header {
+  font-weight: 600;
+  padding: 10px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* notification list */
+.notif-list { list-style: none; margin: 0; padding: 6px 0; max-height: 260px; overflow: auto; }
+.notif-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  align-items: start;
+  font-size: 13px;
+  border-radius: 8px;
+  transition: background 120ms ease;
+}
+.notif-item + .notif-item { margin-top: 4px; }
+.notif-item:hover { background: rgba(0,0,0,0.03); }
+
+/* time muted */
+.notif-time { font-size: 12px; opacity: 0.6; margin-left: 8px; white-space: nowrap; }
+
+/* compact menu */
+.menu-item {
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+.menu-item:hover { background: rgba(0,0,0,0.04); color: var(--accent); }
+.menu-item.muted { color: rgba(0,0,0,0.6); }
+.menu-item.logout {
+  color: #ef4444 !important; /* merah tailwind */
+  font-weight: 600;
+}
+
+.menu-item.logout:hover {
+  background: rgba(239,68,68,0.08); /* merah transparan saat hover */
+  color: #ef4444 !important;
+}
+
+/* Pastikan di dark mode tetap merah */
+[data-theme="dark"] .menu-item.logout {
+  color: #ef4444 !important;
+}
+[data-theme="dark"] .menu-item.logout:hover {
+  background: rgba(239,68,68,0.12);
+  color: #ef4444 !important;
+}
+
+/* divider */
+.popover-divider { height: 1px; background: rgba(0,0,0,0.04); margin: 6px 0; }
+
+/* ensure icons inherit color */
+.popover svg { stroke: currentColor; fill: currentColor; }
+
+/* smaller notif Popover override */
+.notif-popover { min-width: 260px; max-width: 360px; }
+
+/* responsive keep inside viewport */
+@media (max-width: 480px) {
+  .popover--fixed { left: 12px !important; right: 12px !important; transform: none !important; top: calc(100% + 8px) !important; width: calc(100% - 24px); max-width: none; }
+  .popover--fixed .popover-arrow { display: none; }
+}
+@media (max-width: 1024px) {
+  .searchbar-wrapper { height: 42px; }
+  .icon-btn, .menu-btn { height: 34px; width: 34px; }
+}
+@media (max-width: 820px) {
+  .searchbar-wrapper { height:40px; padding:6px 8px; }
+  .search-input { font-size: 13px; }
+}
+
+.sb-prof-modal {
+  width: 100%;
+  max-width: 380px;        /* lebih sempit seperti gambar 1 */
+  border-radius: 18px;
+  padding: 34px 28px 30px;
+  box-shadow: 0 30px 70px rgba(2,10,18,0.55);
+  position: relative;
+  color: var(--panel-text);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 96%, black 2%), var(--card-bg));
+  transform-origin: center;
+}
+
+/* avatar: lebih besar + subtle shadow */
+.sb-prof-modal-avatar {
+  width: 132px;
+  height: 132px;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: -72px auto 14px; /* sedikit mengangkat avatar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--card-bg) 80%, white 6%);
+  box-shadow: 0 10px 30px rgba(2,10,18,0.45);
+  border: 6px solid rgba(255,255,255,0.03);
+}
+
+.sb-confirm-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(8,12,20,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  backdrop-filter: blur(4px);
+}
+
+.sb-confirm{
+  width: 420px;
+  max-width: calc(100% - 40px);
+  background: var(--panel-bg, #fff);
+  color: var(--panel-text, #111);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.2);
+  padding: 18px;
+  transform-origin: center;
+  animation: sb-pop .14s ease-out;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+@keyframes sb-pop {
+  from { transform: translateY(8px) scale(.995); opacity: 0 }
+  to   { transform: translateY(0) scale(1); opacity: 1 }
+}
+
+.sb-confirm-body{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom: 14px;
+}
+
+.sb-confirm-icon{
+  width:48px;
+  height:48px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  background: linear-gradient(135deg,#e6f0ff,#f6fbff);
+  font-size:22px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+}
+
+.sb-confirm-text h4{
+  margin:0 0 6px 0;
+  font-size:16px;
+}
+
+.sb-confirm-text p{
+  margin:0;
+  color:var(--muted, #666);
+  font-size:13px;
+}
+
+.sb-confirm-actions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  margin-top:4px;
+}
+
+.btn{
+  padding:8px 12px;
+  border-radius:8px;
+  border: none;
+  cursor: pointer;
+  font-weight:600;
+}
+
+.btn-ghost{
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.06);
+  color: var(--panel-text, #111);
+}
+
+.btn-danger{
+  background: linear-gradient(180deg,#ff6b6b,#ff3b3b);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(255,59,59,0.12);
+}
+
+/* small screens */
+@media (max-width:480px){
+  .sb-confirm{ width: 92%; padding: 14px; border-radius:10px }
+  .sb-confirm-body{ gap:10px }
+  .sb-confirm-icon{ width:44px; height:44px }
+}

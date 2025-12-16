@@ -1,0 +1,82 @@
+/* Carousel Controls */
+.hrd-carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* keep controls compact and don't push other elements away */
+  margin-right: 12px; /* previously auto which caused the control block to expand */
+  background: var(--card-bg);
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  width: auto;
+}
+
+.hrd-carousel-btn {
+  background: none;
+  border: none;
+  color: var(--muted-text);
+  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.hrd-carousel-btn:hover {
+  background: var(--hover-bg);
+  color: var(--accent);
+}
+
+.hrd-carousel-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.hrd-role-name {
+  font-weight: 500;
+  color: var(--accent);
+  font-size: 14px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.hrd-carousel-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.hrd-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hrd-carousel-dot:hover {
+  background: var(--muted-text);
+}
+
+.hrd-carousel-dot.active {
+  background: var(--accent);
+  transform: scale(1.2);
+}
+
+/* Grid Animation */
+.hrd-card-grid {
+  transition: opacity 0.3s ease;
+}
+
+.hrd-card-grid.changing {
+  opacity: 0.6;
+}

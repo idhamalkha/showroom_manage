@@ -1,0 +1,525 @@
+/* CicilanReportDashboard - Modern, Elegant, Minimalist Design */
+
+/* Keyframe animations */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cicilan-report-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+/* Main KPIs Grid */
+.cicilan-report-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  animation: slideUpFade 600ms ease-out;
+  animation-fill-mode: both;
+}
+
+/* KPI Card */
+.cicilan-report-kpi-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  animation: slideUpFade 600ms ease-out;
+  animation-fill-mode: both;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cicilan-report-kpi-card:nth-child(1) { animation-delay: 80ms; }
+.cicilan-report-kpi-card:nth-child(2) { animation-delay: 160ms; }
+.cicilan-report-kpi-card:nth-child(3) { animation-delay: 240ms; }
+.cicilan-report-kpi-card:nth-child(4) { animation-delay: 320ms; }
+
+.cicilan-report-kpi-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 12px 32px rgba(2, 6, 23, 0.08);
+  transform: translateY(-8px) scale(1.02);
+  background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+}
+
+.cicilan-report-kpi-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cicilan-report-kpi-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.cicilan-report-kpi-icon-sm {
+  width: 24px;
+  height: 24px;
+  color: #9ca3af;
+  flex-shrink: 0;
+  transition: color 280ms ease, transform 280ms ease;
+}
+
+.cicilan-report-kpi-card:hover .cicilan-report-kpi-icon-sm {
+  color: #3b82f6;
+  transform: translateY(-2px);
+}
+
+.cicilan-report-kpi-value {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+}
+
+.cicilan-report-kpi-value-currency {
+  font-size: clamp(0.875rem, 3.5vw, 1.5rem);
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  word-break: break-word;
+}
+
+.cicilan-report-kpi-meta {
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+/* Detailed Stats Section */
+.cicilan-report-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Stats Panel */
+.cicilan-report-panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cicilan-report-panel:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cicilan-report-panel-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cicilan-report-panel-title-emoji {
+  font-size: 1.25rem;
+}
+
+/* Stat Row */
+.cicilan-report-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.15s ease;
+}
+
+.cicilan-report-stat-row:last-child {
+  border-bottom: none;
+}
+
+.cicilan-report-stat-row:hover {
+  background-color: #f9fafb;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 4px;
+}
+
+.cicilan-report-stat-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.cicilan-report-stat-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #111827;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+.cicilan-report-stat-value.color-green {
+  color: #10b981;
+}
+
+.cicilan-report-stat-value.color-blue {
+  color: #3b82f6;
+}
+
+/* Aging Breakdown Grid */
+.cicilan-report-aging-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.cicilan-report-aging-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.cicilan-report-aging-item:last-child {
+  border-bottom: none;
+}
+
+.cicilan-report-aging-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cicilan-report-aging-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cicilan-report-aging-indicator.yellow {
+  background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+}
+
+.cicilan-report-aging-indicator.orange {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+.cicilan-report-aging-indicator.red {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.cicilan-report-aging-indicator.dark-red {
+  background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
+}
+
+.cicilan-report-aging-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.cicilan-report-aging-count {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Insights Box */
+.cicilan-report-insights {
+  background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+  border: 1px solid #93c5fd;
+  border-radius: 12px;
+  padding: 1.75rem;
+  margin-top: 2.5rem;
+}
+
+.cicilan-report-insights-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #075985;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cicilan-report-insights-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cicilan-report-insights-item {
+  font-size: 0.9375rem;
+  color: #0c4a6e;
+  padding: 0.625rem 0;
+  line-height: 1.6;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cicilan-report-insights-item::before {
+  content: '•';
+  color: #0284c7;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.cicilan-report-insights-item strong {
+  font-weight: 700;
+  color: #075985;
+}
+
+/* Dark Theme */
+.dark .cicilan-report-kpi-card {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-color: #374151;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark .cicilan-report-kpi-card:hover {
+  border-color: #4b5563;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dark .cicilan-report-kpi-label {
+  color: #d1d5db;
+}
+
+.dark .cicilan-report-kpi-value,
+.dark .cicilan-report-kpi-value-currency {
+  color: #f3f4f6;
+}
+
+.dark .cicilan-report-kpi-icon-sm {
+  color: #6b7280;
+}
+
+.dark .cicilan-report-kpi-card:hover .cicilan-report-kpi-icon-sm {
+  color: #60a5fa;
+}
+
+.dark .cicilan-report-kpi-meta {
+  color: #9ca3af;
+}
+
+.dark .cicilan-report-panel {
+  background: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark .cicilan-report-panel:hover {
+  border-color: #4b5563;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark .cicilan-report-panel-title {
+  color: #f3f4f6;
+}
+
+.dark .cicilan-report-stat-row {
+  border-color: #374151;
+}
+
+.dark .cicilan-report-stat-row:hover {
+  background-color: #374151;
+}
+
+.dark .cicilan-report-stat-label {
+  color: #9ca3af;
+}
+
+.dark .cicilan-report-stat-value {
+  color: #f3f4f6;
+}
+
+.dark .cicilan-report-aging-item {
+  border-color: #374151;
+}
+
+.dark .cicilan-report-aging-label {
+  color: #9ca3af;
+}
+
+.dark .cicilan-report-aging-count {
+  color: #f3f4f6;
+}
+
+.dark .cicilan-report-insights {
+  background: linear-gradient(135deg, rgba(3, 102, 214, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
+  border-color: #0284c7;
+}
+
+.dark .cicilan-report-insights-title {
+  color: #86efac;
+}
+
+.dark .cicilan-report-insights-item {
+  color: #60a5fa;
+}
+
+.dark .cicilan-report-insights-item::before {
+  color: #3b82f6;
+}
+
+.dark .cicilan-report-insights-item strong {
+  color: #93c5fd;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cicilan-report-kpi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .cicilan-report-kpi-card {
+    padding: 1.25rem;
+  }
+
+  .cicilan-report-kpi-value {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+
+  .cicilan-report-kpi-value-currency {
+    font-size: clamp(0.75rem, 3vw, 1.25rem);
+  }
+
+  .cicilan-report-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cicilan-report-panel {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cicilan-report-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .cicilan-report-kpi-card {
+    padding: 1.25rem;
+  }
+
+  .cicilan-report-kpi-label {
+    font-size: 0.75rem;
+  }
+
+  .cicilan-report-kpi-value {
+    font-size: clamp(1.125rem, 3.5vw, 1.5rem);
+  }
+
+  .cicilan-report-kpi-value-currency {
+    font-size: clamp(0.7rem, 2.5vw, 1rem);
+  }
+
+  .cicilan-report-kpi-icon-sm {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cicilan-report-panel {
+    padding: 1.25rem;
+  }
+
+  .cicilan-report-panel-title {
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .cicilan-report-stat-row {
+    padding: 0.75rem 0;
+  }
+
+  .cicilan-report-stat-label {
+    font-size: 0.8125rem;
+  }
+
+  .cicilan-report-stat-value {
+    font-size: 1rem;
+  }
+
+  .cicilan-report-aging-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cicilan-report-insights {
+    padding: 1.25rem;
+  }
+
+  .cicilan-report-insights-title {
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  .cicilan-report-insights-item {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cicilan-report-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cicilan-report-kpi-card {
+    padding: 1rem;
+  }
+
+  .cicilan-report-kpi-value {
+    font-size: clamp(1.125rem, 3.5vw, 1.5rem);
+  }
+
+  .cicilan-report-kpi-value-currency {
+    font-size: clamp(0.7rem, 2.5vw, 1rem);
+  }
+
+  .cicilan-report-panel {
+    padding: 1rem;
+  }
+
+  .cicilan-report-insights {
+    padding: 1rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .cicilan-report-kpi-card,
+  .cicilan-report-panel {
+    box-shadow: none;
+    border: 1px solid #d1d5db;
+  }
+
+  .cicilan-report-insights {
+    break-inside: avoid;
+  }
+}

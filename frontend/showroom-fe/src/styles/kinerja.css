@@ -1,0 +1,505 @@
+.kinerja-section {
+  margin-top: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  /* padding: 0 14px; */
+}
+
+/* Table Styles */
+.kinerja-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin: 12px 0;
+}
+
+.kinerja-table {
+  width: 100%;
+  min-width: 800px;
+  border-collapse: collapse;
+  background: white;
+}
+
+/* small changing fade used when carousel switches roles (non-layout affecting) */
+.kinerja-table.changing {
+  opacity: 0.6;
+  transition: opacity 0.28s ease;
+}
+
+/* Responsive for 1366x768 laptop screens */
+@media (max-width: 1400px) {
+  .kinerja-table {
+    min-width: 600px;
+  }
+  
+  .kinerja-table.has-bonus .kinerja-table-head,
+  .kinerja-table.has-bonus .kinerja-table-row {
+    grid-template-columns: 
+      minmax(200px, 2fr)  /* Name */
+      minmax(90px, 0.9fr) /* Gaji */
+      minmax(90px, 0.9fr) /* Bonus */
+      minmax(110px, 1fr)  /* Transaksi */
+      minmax(80px, 0.8fr) /* Kontrak */
+      minmax(80px, 0.8fr) /* Lembur */
+      minmax(70px, 0.7fr) /* Cuti */
+      minmax(70px, 0.7fr) /* Hadir */
+      minmax(70px, 0.7fr) /* Absen */
+      minmax(100px, 1fr); /* Total */
+    padding: 10px 16px;
+    gap: 10px;
+  }
+  
+  .kinerja-table.no-bonus .kinerja-table-head,
+  .kinerja-table.no-bonus .kinerja-table-row {
+    grid-template-columns: 
+      minmax(200px, 2fr)  /* Name */
+      minmax(90px, 0.9fr) /* Gaji */
+      minmax(80px, 0.8fr) /* Kontrak */
+      minmax(80px, 0.8fr) /* Lembur */
+      minmax(70px, 0.7fr) /* Cuti */
+      minmax(70px, 0.7fr) /* Hadir */
+      minmax(70px, 0.7fr) /* Absen */
+      minmax(100px, 1fr); /* Total */
+    padding: 10px 16px;
+    gap: 10px;
+  }
+  
+  .col {
+    font-size: 12px;
+  }
+  
+  .kinerja-table-head {
+    font-size: 12px;
+  }
+  
+  .row-avatar {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+  
+  .col-name {
+    padding-right: 8px;
+  }
+}
+
+/* Grid Layout for Sales */
+.kinerja-table.has-bonus .kinerja-table-head,
+.kinerja-table.has-bonus .kinerja-table-row {
+  display: grid;
+  grid-template-columns: 
+    minmax(240px, 2fr)  /* Name */
+    minmax(110px, 1fr)  /* Gaji */
+    minmax(110px, 1fr)  /* Bonus */
+    minmax(140px, 1.2fr) /* Transaksi */
+    minmax(100px, 1fr)  /* Kontrak */
+    minmax(100px, 1fr)  /* Lembur */
+    minmax(80px, 0.8fr) /* Cuti */
+    minmax(75px, 0.8fr) /* Hadir */
+    minmax(75px, 0.8fr) /* Absen */
+    minmax(120px, 1fr); /* Total */
+  align-items: center;
+  padding: 12px 20px;
+  gap: 12px;
+  transition: background-color 0.15s ease;
+}
+
+/* Grid Layout for Non-Sales */
+.kinerja-table.no-bonus .kinerja-table-head,
+.kinerja-table.no-bonus .kinerja-table-row {
+  display: grid;
+  grid-template-columns: 
+    minmax(240px, 2fr)  /* Name */
+    minmax(110px, 1fr)  /* Gaji */
+    minmax(100px, 1fr)  /* Kontrak */
+    minmax(100px, 1fr)  /* Lembur */
+    minmax(80px, 0.8fr) /* Cuti */
+    minmax(75px, 0.8fr) /* Hadir */
+    minmax(75px, 0.8fr) /* Absen */
+    minmax(120px, 1fr); /* Total */
+  align-items: center;
+  padding: 12px 20px;
+  gap: 12px;
+  transition: background-color 0.15s ease;
+}
+
+/* Row hover effect */
+.kinerja-table-row:hover {
+  background-color: var(--hover-bg, rgba(0,0,0,0.02));
+}
+
+/* Header Styles */
+.kinerja-table-head {
+  background: var(--table-header-bg, #f8fafc);
+  border-bottom: 2px solid var(--border-color, rgba(0,0,0,0.06));
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-size: 14px;
+  color: var(--muted-text, #64748b);
+  letter-spacing: 0.3px;
+}
+
+/* Row Styles */
+.kinerja-table-row {
+  border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.04));
+}
+
+.kinerja-table-row:last-child {
+  border-bottom: none;
+}
+
+/* Column Alignment */
+.col {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.col-name {
+  padding-right: 12px;
+  font-weight: 500;
+  color: var(--text, #1e293b);
+}
+
+.col[style*="text-align: right"] {
+  justify-content: flex-end;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.col[style*="text-align: center"] {
+  justify-content: center;
+}
+
+/* Avatar Styles */
+.row-avatar {
+  width: 38px;
+  height: 38px;
+  min-width: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 12px;
+  border: 2px solid white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.row-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Carousel Controls */
+.hrd-carousel-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--button-bg, rgba(0,0,0,0.05));
+  color: var(--text);
+  font-size: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.hrd-carousel-btn:hover {
+  background: var(--button-hover-bg, rgba(0,0,0,0.08));
+}
+
+.hrd-carousel-dot {
+  width: 8px;
+  height: 8px;
+  border: none;
+  background: var(--dot-bg, rgba(0,0,0,0.1));
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+}
+
+.hrd-carousel-dot.active {
+  background: var(--accent, #2563eb);
+}
+
+/* Filter select style placed next to carousel (compact) */
+.kinerja-filter-select {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-left: 6px;
+  cursor: pointer;
+}
+.kinerja-filter-select:focus { outline: none; border-color: var(--accent); box-shadow: 0 6px 18px rgba(2,10,18,0.06); }
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border: none;
+  background: var(--dot-bg, rgba(0,0,0,0.1));
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.carousel-dot.active {
+  background: var(--dot-active-bg, var(--accent, #2563eb));
+  transform: scale(1.2);
+}
+
+/* table wrapper follows HRD padding/margins */
+.kinerja-blabla .kinerja-table-wrapper {
+  margin-top: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--panel-bg);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* table container (uses grid columns for layout) */
+.kinerja-blabla .kinerja-table {
+  width: 100%;
+}
+
+/* NOTE: grid-template for header/rows is defined by .kinerja-table.has-bonus / .no-bonus
+   above (minmax-based). Below we keep only header appearance rules so there's
+   no conflict between selectors. */
+.kinerja-blabla .kinerja-table-head {
+  gap: 8px;
+  align-items: center;
+  /* keep header padding in sync with .kinerja-table-row for perfect alignment */
+  padding: 16px 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.01));
+  color: var(--muted-text);
+  font-weight: 700;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+/* center header text for all numeric columns; name column handled separately */
+.kinerja-blabla .kinerja-table-head .col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* keep the Name header left aligned */
+.kinerja-blabla .kinerja-table-head .col-name {
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: 6px;
+}
+
+/* rows */
+.kinerja-blabla .kinerja-table-row {
+  display: grid; /* grid-template-columns set by .has-bonus / .no-bonus rules above */
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+  background: var(--panel-bg);
+  transition: background .12s ease;
+}
+
+/* ensure each cell uses flex center so header <-> cell align perfectly */
+.kinerja-blabla .kinerja-table-row .col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* avatar + name: keep avatar left of name but both aligned to left inside name column */
+.kinerja-blabla .col-name {
+  justify-content: flex-start; /* left align name+avatar group */
+  gap: 12px;
+  padding-left: 6px;
+}
+.kinerja-blabla .col-name > div { display: inline-block; }
+
+/* avatar cell */
+.kinerja-blabla .row-avatar img {
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  box-shadow: 0 6px 18px rgba(2,10,18,0.04);
+  vertical-align: middle;
+}
+
+/* Column alignments and styles */
+.kinerja-blabla .col-bonus,
+.kinerja-blabla .col-transaksi,
+.kinerja-blabla .col-cuti {
+  text-align: center;
+  font-size: 14px;
+  color: var(--panel-text);
+}
+
+/* monetary columns should be right-aligned for readability */
+.kinerja-blabla .col-gaji,
+.kinerja-blabla .col-bonus,
+.kinerja-blabla .col-lembur,
+.kinerja-blabla .col-total {
+  text-align: right;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--panel-text);
+}
+
+/* special columns - transaksi uses accent color but keeps center alignment */
+.kinerja-blabla .col-transaksi {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+/* compact table spacing */
+.kinerja-blabla .kinerja-table-head,
+.kinerja-blabla .kinerja-row {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+/* limit visible rows spacing */
+.kinerja-blabla .kinerja-table-body { gap: 0; }
+
+/* responsive card grid for kinerja (scoped) */
+.kinerja-blabla .kinerja-card-grid {
+  display: grid;
+  gap: 16px;
+  /* wide screens: try to fit 5-7 cards depending viewport */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin-top: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* make hrd-card-employee compact inside kinerja */
+.kinerja-blabla .hrd-card-employee {
+  padding: 12px;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* reduce avatar size inside this grid */
+.kinerja-blabla .hrd-card-employee img {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ensure pagination input small */
+.kinerja-blabla .page-input {
+  width: 48px;
+  padding: 6px;
+  border-radius: 6px;
+  text-align: center;
+  box-sizing: border-box;
+  background: var(--panel-bg);      /* follows theme */
+  color: var(--panel-text);         /* follows theme */
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: background .14s ease, color .14s ease, border-color .14s ease, box-shadow .14s ease;
+}
+.kinerja-blabla .page-input::placeholder { color: var(--muted-text); opacity: 0.9; }
+.kinerja-blabla .page-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(2,10,18,0.12);
+  background: var(--panel-bg);
+  color: var(--panel-text);
+}
+
+/* keep select controls visually consistent with theme */
+.kinerja-blabla .kinerja-table-controls select {
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background .14s ease, color .14s ease, border-color .14s ease;
+}
+.kinerja-blabla .kinerja-table-controls select:focus { border-color: var(--accent); outline: none; }
+
+/* table footer: align pagination to right */
+.kinerja-blabla .kinerja-table-footer {
+  padding: 10px 18px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.kinerja-blabla .kinerja-table-footer .pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .kinerja-blabla .kinerja-top { flex-direction: column; gap: 12px; }
+  .kinerja-blabla .kinerja-kpi { width: 100%; flex-direction: row; justify-content: space-between; }
+  .kinerja-blabla .kpi-card { flex: 1 1 24%; padding:10px; margin:0 6px; }
+  .kinerja-blabla .kinerja-podium { order: 1; }
+}
+@media (max-width: 520px) {
+  .kinerja-blabla .podium-1 .card.king { min-width: 140px; }
+  .kinerja-blabla .kinerja-kpi { display: grid; grid-template-columns: repeat(2, 1fr); gap:10px; width:100%; }
+}
+@media (max-width: 1100px) {
+  .kinerja-blabla .kinerja-table-head,
+  .kinerja-blabla .kinerja-table-row {
+    /* more compact: name, gaji, bonus, kontrak, lembur, cuti, total */
+    grid-template-columns: 1fr 140px 80px 90px 80px 80px 100px;
+  }
+}
+@media (max-width: 760px) {
+  .kinerja-blabla .kinerja-table-head,
+  .kinerja-blabla .kinerja-table-row {
+    grid-template-columns: 1fr 80px 80px; /* keep compact on small screens */
+  }
+  .kinerja-blabla .col-cuti { display: none; }
+  .kinerja-blabla .col-target { display:none; }
+}
+
+/* override: make name column left-aligned in rows (header kept left already) */
+.kinerja-blabla .kinerja-table-row .col-name {
+  justify-content: flex-start;    /* align avatar+name group to left inside the cell */
+  text-align: left;               /* ensure text inside is left-aligned */
+  padding-left: 6px;
+  gap: 12px;
+}
+
+/* ensure avatar sits to the left of the name with spacing */
+.kinerja-blabla .kinerja-table-row .col-name .row-avatar {
+  margin-right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* make the inner name/email text left aligned */
+.kinerja-blabla .kinerja-table-row .col-name > div {
+  display: inline-block;
+  text-align: left;
+}

@@ -1,0 +1,518 @@
+/* Theme variables (prefer app-level overrides) */
+:root {
+  --panel-bg: #ffffff;
+  --card-bg: #ffffff;
+  --panel-text: #0f172a;
+  --muted-text: #6b7280;
+  --border: #e5e7eb;
+  --accent: #6366f1;
+  --danger: #ef4444;
+  --surface-elev: rgba(2,10,18,0.04);
+}
+
+/* Use app-level theme if provided (example: body[data-theme="dark"] sets vars elsewhere) */
+.hrd-section { padding: 32px 0; }
+
+/* Header */
+.hrd-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; }
+.hrd-header-left { display:flex; gap:12px; align-items:center; }
+.hrd-header-right { display:flex; gap:12px; align-items:center; }
+
+/* Filter button */
+.hrd-filter-btn {
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 6px 18px var(--surface-elev);
+}
+.hrd-filter-btn:hover { filter: brightness(.98); }
+
+/* Popover (unique to HRD) */
+.hrd-popover {
+  background: var(--card-bg);
+  color: var(--panel-text);
+  border-radius: 10px;
+  box-shadow: 0 14px 36px rgba(3,10,18,0.12);
+  min-width: 200px;
+  overflow: hidden;
+  z-index: 1200;
+  padding: 6px 0;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.hrd-popover-arrow { position:absolute; top:-6px; right:16px; width:12px; height:12px; background:var(--card-bg); transform:rotate(45deg); }
+
+/* menu items */
+.hrd-menu-item { display:block; width:100%; text-align:left; padding:10px 14px; background:transparent; border:none; font-size:13px; cursor:pointer; }
+.hrd-menu-item:hover { background: rgba(0,0,0,0.04); color: var(--accent); }
+.hrd-popover-divider { height:1px; background: rgba(0,0,0,0.04); margin:6px 0; }
+
+/* Card grid & card (updated for tighter spacing and responsive columns) */
+.hrd-card-grid {
+  display: grid;
+  /* gunakan auto-fit / minmax agar banyak kolom muat tanpa terlalu lebar */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;               /* lebih kecil dari 24px sebelumnya */
+  margin-top: 12px;
+  justify-items: stretch;
+}
+
+/* Responsive for 1366x768 laptop screens */
+@media (max-width: 1400px) {
+  .hrd-card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+}
+
+/* Card styling: jangan pakai fixed width, kurangi padding untuk mengecilkan kartu */
+.hrd-card-employee {
+  position: relative;
+  /* hapus width:240px; pakai box sizing responsif */
+  padding: 16px;           /* sedikit lebih ringkas */
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--card-bg), rgba(0,0,0,0.02));
+  color: var(--panel-text);
+  box-shadow: 0 2px 8px var(--surface-elev);
+  transition: border .18s ease, transform .12s ease, box-shadow .18s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 220px;      /* jaga ketinggian konsisten */
+}
+
+@media (max-width: 1400px) {
+  .hrd-card-employee {
+    padding: 12px;
+    min-height: 200px;
+  }
+}
+
+/* checkbox */
+.hrd-card-checkbox { position:absolute; left:12px; top:12px; }
+.hrd-card-checkbox input { width:14px; height:14px; }
+
+/* avatar */
+.hrd-avatar { width:100px; height:100px; border-radius:50%; overflow:hidden; margin:0 auto 12px auto; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.04); }
+
+@media (max-width: 1400px) {
+  .hrd-avatar {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px auto;
+  }
+}
+
+/* text */
+.hrd-card-name { text-align:center; margin-bottom:6px; font-weight:600; font-size:16px; }
+.hrd-card-position { text-align:center; font-size:13px; margin-bottom:12px; color:var(--muted-text); }
+
+@media (max-width: 1400px) {
+  .hrd-card-name {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  
+  .hrd-card-position {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}
+
+/* actions */
+.hrd-card-actions { display:flex; justify-content:center; gap:8px; }
+.hrd-card-footer { height:10px; background: rgba(0,0,0,0.03); margin-top:12px; border-radius:8px; }
+
+/* modal / overlay */
+.hrd-overlay { position:fixed; inset:0; background: rgba(0,0,0,0.35); z-index:1100; display:flex; align-items:center; justify-content:center; }
+.hrd-modal { background: var(--card-bg); border-radius:14px; padding:28px; min-width:320px; max-width:640px; box-shadow: 0 12px 40px rgba(0,0,0,0.22); position:relative; color:var(--panel-text); }
+.hrd-modal-close { position:absolute; top:12px; right:12px; background:transparent; border:none; font-size:20px; cursor:pointer; color:var(--panel-text); }
+
+/* modal avatar + layout */
+.hrd-modal-avatar { width:120px; height:120px; border-radius:50%; overflow:hidden; margin:0 auto 12px auto; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.04); }
+.hrd-modal-name { text-align:center; font-weight:600; font-size:20px; margin-bottom:8px; }
+.hrd-modal-position { text-align:center; font-size:16px; color:var(--muted-text); margin-bottom:12px; }
+.hrd-modal-row { margin-bottom:8px; color:var(--panel-text); }
+
+/* modal actions */
+.hrd-modal-actions { display:flex; gap:12px; justify-content:center; margin-top:20px; }
+
+/* form inputs */
+.hrd-form-label { display:block; margin-bottom:12px; font-weight:500; color:var(--panel-text); }
+.hrd-input, .hrd-select {
+  width:100%;
+  margin-top:6px;
+  padding:8px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background: var(--panel-bg);
+  color: var(--panel-text);
+}
+.hrd-input:focus, .hrd-select:focus { outline:none; box-shadow: 0 0 0 3px rgba(99,102,241,0.12); }
+
+/* buttons reuse existing .btn classes, add upload specific */
+.upload-btn { width:100%; margin-top:8px; margin-bottom:8px; }
+
+/* loading */
+.hrd-loading { margin-top:32px; text-align:center; color:var(--muted-text); }
+
+/* Primary button: adapt to accent but slightly rounded and subtle shadow */
+.btn.primary {
+  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 85%, black 15%));
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 18px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(2,10,18,0.12);
+  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
+}
+.btn.primary:hover { transform: translateY(-2px); filter: brightness(.98); box-shadow: 0 12px 28px rgba(2,10,18,0.14); }
+
+/* Neutral / details button: subtle pill with card-bg */
+.btn.neutral {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  color: var(--panel-text);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-weight: 600;
+  box-shadow: none;
+}
+.btn.neutral:hover { transform: translateY(-2px); background: rgba(255,255,255,0.03); }
+
+/* Danger: keep red but softened outline */
+.btn.danger {
+  background: var(--danger);
+  color: #fff;
+  border-radius: 10px;
+  padding: 8px 18px;
+  font-weight:700;
+  box-shadow: 0 6px 18px rgba(239,68,68,0.12);
+}
+.btn.danger:disabled { opacity: 0.6; filter: saturate(.6); cursor: not-allowed; }
+
+/* Modal form styling: centered card, compact and themed */
+.form-modal {
+  max-width: 520px;
+  width: 100%;
+  padding: 28px;
+  border-radius: 12px;
+}
+.hrd-modal { border-radius: 12px; }
+
+/* make form inputs visually lighter on dark bg */
+.hrd-input, .hrd-select {
+  background: color-mix(in srgb, var(--panel-bg) 85%, black 5%);
+  border: 1px solid color-mix(in srgb, var(--border) 65%, black 8%);
+}
+
+/* Modal tweaks: lebih compact / elegant (update existing modal rules) */
+.hrd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.55);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.hrd-modal {
+  width: 100%;
+  max-width: 380px;        /* lebih sempit seperti gambar 1 */
+  border-radius: 18px;
+  padding: 34px 28px 30px;
+  box-shadow: 0 30px 70px rgba(2,10,18,0.55);
+  position: relative;
+  color: var(--panel-text);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 96%, black 2%), var(--card-bg));
+  transform-origin: center;
+}
+
+/* avatar: lebih besar + subtle shadow */
+.hrd-modal-avatar {
+  width: 132px;
+  height: 132px;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: -72px auto 14px; /* sedikit mengangkat avatar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--card-bg) 80%, white 6%);
+  box-shadow: 0 10px 30px rgba(2,10,18,0.45);
+  border: 6px solid rgba(255,255,255,0.03);
+}
+
+/* upload button: full width pill, strong accent gradient */
+.upload-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 88%, black 6%), var(--accent));
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(22,199,132,0.14);
+  border: none;
+  cursor: pointer;
+}
+
+/* inputs: taller, rounded, softer inner bg */
+.hrd-input,
+.hrd-select {
+  height: 44px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 70%, black 6%);
+  background: color-mix(in srgb, var(--panel-bg) 88%, black 4%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  color: var(--panel-text);
+  transition: box-shadow .12s ease, border-color .12s ease, transform .08s ease;
+}
+
+/* input focus */
+.hrd-input:focus, .hrd-select:focus {
+  outline: none;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.18), 0 0 0 6px color-mix(in srgb, var(--accent) 14%, transparent 86%);
+  border-color: var(--accent);
+}
+
+/* better-looking select (dropdown) for modal forms — less "kaku" */
+.hrd-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  padding: 10px 40px 10px 12px; /* room for custom arrow */
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 70%, black 6%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--panel-bg) 96%, black 2%), var(--panel-bg));
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8'><path fill='%234b5563' d='M7 8L0 0h14z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  color: var(--panel-text);
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.02);
+  transition: box-shadow .12s ease, border-color .12s ease, transform .06s ease;
+}
+.hrd-select:hover { box-shadow: inset 0 -2px 6px rgba(0,0,0,0.03); }
+.hrd-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.14), 0 0 0 6px color-mix(in srgb, var(--accent) 12%, transparent 88%);
+}
+ 
+/* small: make selects visually taller like inputs */
+.hrd-select { height: 44px; }
+
+/* ensure select custom arrow visible on dark/light by tinting via fill in SVG data uri if needed */
+/* end additions */
+
+/* submit button: small centered pill */
+.hrd-modal-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+.hrd-modal-actions .btn.primary {
+  min-width: 110px;
+  padding: 8px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 10px 26px rgba(22,199,132,0.12);
+}
+
+/* close button slim */
+.hrd-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--panel-text);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+/* lighten modal footer strip */
+.hrd-card-footer { height: 12px; margin-top: 18px; border-radius: 8px; background: linear-gradient(90deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02)); }
+
+/* HRD custom popover-select (scoped, won't clash with SearchBar) */
+.hrd-select-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-weight: 600;
+  justify-content: space-between;
+  box-shadow: 0 6px 18px var(--surface-elev);
+}
+.hrd-select-btn[disabled] { opacity: 0.6; cursor: not-allowed; }
+.hrd-select-caret { opacity: 0.9; margin-left: 8px; }
+
+/* list */
+.hrd-select-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: 8px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 14px 36px rgba(3,10,18,0.12);
+  z-index: 1300;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* item */
+.hrd-select-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+.hrd-select-item:hover { background: rgba(0,0,0,0.04); color: var(--accent); }
+
+/* mobile */
+@media (max-width: 420px) {
+  .hrd-select-list { max-height: 220px; overflow:auto; }
+}
+/* end hrd-select popover styles */
+
+/* responsive: di layar kecil agak sempit */
+@media (max-width: 420px) {
+  .hrd-modal { max-width: 100%; padding: 20px; border-radius: 12px; }
+  .hrd-modal-avatar { width: 110px; height: 110px; margin-top: -54px; }
+  .hrd-input, .hrd-select { height: 42px; }
+}
+@media (max-width: 760px) {
+  .hrd-card-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .hrd-card-employee { padding: 12px; min-height: 200px; }
+  .hrd-avatar { width: 88px; height: 88px; }
+}
+@media (max-width: 1100px) {
+  .hrd-card-grid { gap: 14px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+}
+
+/* DatePicker / DP styles (calendar card) */
+.date-picker-btn {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  background: color-mix(in srgb, var(--panel-bg) 92%, black 4%);
+  border:1px solid color-mix(in srgb, var(--border) 70%, black 6%);
+  cursor:pointer;
+  font-weight:600;
+  color:var(--panel-text);
+}
+.dp-popover { z-index:1400; }
+.dp-card {
+  min-width:320px;
+  background: var(--card-bg);
+  border-radius:14px;
+  box-shadow: 0 24px 60px rgba(2,10,18,0.18);
+  padding:14px;
+  border:1px solid rgba(0,0,0,0.06);
+}
+.dp-header { display:flex; gap:10px; margin-bottom:10px; }
+.dp-header select { padding:8px 10px; border-radius:8px; border:1px solid var(--border); background:var(--panel-bg); }
+
+.dp-calendar { display:block; }
+.dp-weeklabels { display:grid; grid-template-columns:repeat(7,1fr); margin-bottom:8px; color:var(--muted-text); font-size:12px; }
+.dp-weeklabel { text-align:center; }
+
+.dp-days { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; }
+.dp-day {
+  height:40px;
+  border-radius:8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
+  color:var(--panel-text);
+}
+.dp-day.dp-other { color: rgba(0,0,0,0.18); cursor:default; }
+.dp-day:hover { background: rgba(99,102,241,0.06); }
+.dp-day.dp-selected {
+  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 80%, black 20%));
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(2,10,18,0.12);
+}
+.dp-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:12px; }
+
+/* make hrd select lists scrollable and show max 6 items */
+.hrd-select-list.hrd-select-list-scrollable {
+  max-height: calc(6 * 44px); /* show 6 items, then scroll */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ensure each item has consistent height for the 6-rows calc */
+.hrd-select-list .hrd-select-item {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  text-align: left;
+}
+
+/* scrollbar niceties (optional) */
+.hrd-select-list.hrd-select-list-scrollable::-webkit-scrollbar {
+  width: 8px;
+}
+.hrd-select-list.hrd-select-list-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.08);
+  border-radius: 6px;
+}
+
+/* keep dp-card size comfortable */
+.dp-card { min-width: 320px; max-width: 420px; }
+/* wider modal variant for vehicle form (desktop) */
+.form-modal.wide-modal {
+  max-width: 720px; /* lebih lebar untuk tampilan data kendaraan */
+  padding: 34px;
+  display: grid;
+  grid-template-columns: 1fr 360px; /* konten form + preview column bila ada */
+  gap: 20px;
+}
+
+/* ensure full-width form inside on small screens */
+@media (max-width: 900px) {
+  .form-modal.wide-modal {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    padding: 28px;
+  }
+}
+
+/* tweak select list width so it matches button */
+.hrd-select-list { min-width: 100%; box-sizing: border-box; }

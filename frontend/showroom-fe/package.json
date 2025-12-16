@@ -1,0 +1,49 @@
+{
+  "name": "showroom-fe",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@floating-ui/react": "^0.27.16",
+    "@headlessui/react": "^2.2.9",
+    "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^5.2.2",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-primitive": "^2.1.4",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@tanstack/react-query": "^5.13.0",
+    "axios": "^1.6.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.23.24",
+    "lucide-react": "^0.554.0",
+    "moodle": "^1.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.66.1",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^6.20.0",
+    "recharts": "^3.5.0",
+    "sonner": "^2.0.7",
+    "zod": "^4.1.13",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "baseline-browser-mapping": "^2.8.31",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10"
+  }
+}

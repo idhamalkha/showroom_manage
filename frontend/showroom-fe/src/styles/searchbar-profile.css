@@ -1,0 +1,111 @@
+/* profile-search-unik styles — independent, no global collisions */
+
+/* Backdrop that blocks everything (sidebar, page) */
+.profile-search-unik-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1000; /* below payment record modal (9999) */
+  pointer-events: all;
+}
+
+/* Centering overlay (modal container) */
+.profile-search-unik-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1010;
+  pointer-events: none;
+}
+
+/* Modal itself */
+.profile-search-unik-modal {
+  pointer-events: all;
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--card-bg, #0b2430);
+  color: var(--panel-text, #e6f0f2);
+  border-radius: 14px;
+  padding: 28px 24px 20px;
+  box-shadow: 0 20px 60px rgba(2,10,18,0.6);
+  z-index: 1020;
+}
+
+/* avatar */
+.profile-search-unik-avatar {
+  width: 120px;
+  height: 120px;
+  margin: -84px auto 12px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 6px solid rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+}
+.profile-search-unik-avatar img { width:100%; height:100%; object-fit:cover; }
+
+/* name / position */
+.profile-search-unik-name { text-align:center; font-weight:700; font-size:20px; margin-top:6px; }
+.profile-search-unik-position { text-align:center; color:var(--muted-text); margin-bottom:16px; }
+
+/* rows */
+.profile-search-unik-row { display:flex; justify-content:space-between; padding:8px 0; font-size:14px; color:var(--panel-text); }
+.profile-search-unik-row strong { color:var(--panel-text); }
+
+/* upload button */
+.profile-search-unik-upload {
+  display:block;
+  width:100%;
+  padding:12px 14px;
+  margin-top:16px;
+  border-radius:10px;
+  background: linear-gradient(180deg,#1fb37a,#0ea56a);
+  border: none;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* Confirmation overlay (fixed, independent) */
+.profile-search-unik-confirm {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1030; /* above modal but still below payment record modal (9999) */
+  background: rgba(0,0,0,0.52);
+  pointer-events: all;
+}
+.profile-search-unik-confirm-card {
+  width:360px;
+  max-width:94%;
+  background: var(--card-bg, #fff);
+  color: var(--panel-text, #0b2430);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  display:flex;
+  flex-direction:column;
+}
+.profile-search-unik-confirm-body { display:flex; gap:12px; align-items:center; }
+.profile-search-unik-preview { width:84px; height:84px; border-radius:8px; overflow:hidden; background:#f3f4f6; }
+.profile-search-unik-preview img { width:100%; height:100%; object-fit:cover; }
+.profile-search-unik-confirm-text { font-size:13px; color:var(--muted-text); }
+
+/* actions */
+.profile-search-unik-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:14px; }
+.profile-search-unik-btn { min-width:96px; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; font-weight:600; }
+.profile-search-unik-btn.cancel { background: rgba(0,0,0,0.06); color:var(--panel-text); }
+.profile-search-unik-btn.confirm { background: linear-gradient(180deg,#1fb37a,#0ea56a); color:#fff; }
+.profile-search-unik-btn:disabled { opacity:0.6; cursor:not-allowed; }
+
+/* ensure no accidental global overrides */
+.profile-search-unik-modal * { box-sizing: border-box; }

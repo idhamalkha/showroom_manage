@@ -1,0 +1,42 @@
+.mm-loading-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+  z-index: 9999;
+}
+
+.mm-loading-panel {
+  background: rgba(255,255,255,0.98);
+  border-radius: 8px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.mm-spinner {
+  width: 44px;
+  height: 44px;
+}
+
+.mm-spinner .path {
+  stroke: #2563eb; /* blue */
+  stroke-linecap: round;
+  animation: mm-spin 1s linear infinite;
+}
+
+@keyframes mm-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.mm-loading-text {
+  font-size: 14px;
+  color: #0f172a;
+  font-weight: 600;
+}

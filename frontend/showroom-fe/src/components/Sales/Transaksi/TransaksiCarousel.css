@@ -1,0 +1,183 @@
+/* Transaksi carousel container */
+.transaksi-carousel-root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* header and controls */
+.transaksi-carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.transaksi-carousel-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* viewport (contains track and pages) */
+.transaksi-carousel-viewport {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 10px;
+  box-sizing: border-box;
+
+  /* cap height to ensure two rows fit comfortably */
+  height: 100%;
+  max-height: min(72vh, 560px);
+  min-height: 0;
+}
+
+/* track */
+.transaksi-carousel-track {
+  display: flex;
+  width: fit-content;
+  height: 100%;
+  transition: transform 420ms cubic-bezier(.22,.9,.28,1);
+  will-change: transform;
+}
+
+.transaksi-carousel-track {
+  transform: translateX(calc(-100% * var(--page, 0)));
+}
+
+/* page */
+.transaksi-carousel-page {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Hide scrollbar while keeping scroll functionality */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.transaksi-carousel-page::-webkit-scrollbar {
+  display: none;
+}
+
+/* brand card grid: 4 cols x 2 rows */
+.transaksi-page-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 260px; /* fixed row height so each page shows 2 rows */
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+/* empty state */
+.transaksi-carousel-empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* previous/next buttons */
+.transaksi-carousel-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  border: none;
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 200ms ease;
+}
+
+.transaksi-carousel-btn:disabled {
+  opacity: 0.38;
+  cursor: default;
+  transform: none;
+}
+
+.transaksi-carousel-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+/* responsive grid adjustments */
+@media (max-width: 1400px) {
+  .transaksi-page-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 220px;
+    gap: 0.9rem;
+  }
+  .transaksi-carousel-viewport {
+    max-height: min(68vh, 480px);
+  }
+}
+
+@media (max-width: 1200px) {
+  .transaksi-page-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+  }
+}
+
+@media (max-width: 900px) {
+  .transaksi-page-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 220px;
+    gap: 0.8rem;
+  }
+  .transaksi-carousel-page { padding: 0.8rem; }
+}
+
+@media (max-width: 420px) {
+  .transaksi-page-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+    gap: 0.6rem;
+  }
+  .transaksi-carousel-page { padding: 0.6rem; }
+}
+
+/* entry animation (only when .animate-entrance not present) */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.transaksi-carousel-page:not(.animate-entrance) {
+  animation: slideIn 420ms cubic-bezier(.22,.9,.28,1) both;
+}
+
+/* Success modal overlay for transaksi result */
+.trx-success-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,0.45);
+  z-index: 1400;
+}
+.trx-success-modal {
+  background: #fff;
+  padding: 20px 24px;
+  border-radius: 10px;
+  min-width: 320px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  text-align: left;
+}
+.trx-success-modal h3 { margin:0 0 8px 0 }
+.trx-success-modal p { margin:6px 0 }
+.trx-success-modal .btn { background:#d32; color:#fff; border:0; padding:8px 12px; border-radius:8px; cursor:pointer }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

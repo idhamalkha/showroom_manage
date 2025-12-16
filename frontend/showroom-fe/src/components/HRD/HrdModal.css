@@ -1,0 +1,79 @@
+/* Employee modal specific styles */
+.emp-select-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px 12px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--panel-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.emp-select-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.emp-select-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.emp-select-btn.selected {
+  background: color-mix(in srgb, var(--accent) 4%, var(--panel-bg));
+  border-color: var(--accent);
+}
+
+.emp-select-caret {
+  margin-left: auto;
+  color: var(--muted-text);
+  transition: transform 0.2s ease;
+}
+
+.emp-select-list {
+  position: fixed;
+  min-width: 200px;
+  max-width: 280px;
+  max-height: 280px;
+  overflow-y: auto;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 14px 36px rgba(3,10,18,0.12);
+  z-index: 1300;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.emp-select-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--panel-text);
+}
+
+.emp-select-item:hover { 
+  background: rgba(0,0,0,0.04); 
+  color: var(--accent); 
+}
+
+.emp-select-item.selected {
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 420px) {
+  .emp-select-list { 
+    max-height: 220px; 
+    max-width: 92vw;
+  }
+}

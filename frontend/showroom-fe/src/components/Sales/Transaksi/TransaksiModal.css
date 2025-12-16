@@ -1,0 +1,384 @@
+.transaksi-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+}
+.transaksi-modal {
+  width: 90%;
+  max-width: 980px;
+  max-height: 88vh;
+  background: var(--card-bg, #fff);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.transaksi-modal-header {
+  display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid #eee;
+}
+.transaksi-modal-title { font-weight:700; }
+.transaksi-modal-close { background:none; border:0; font-size:20px; cursor:pointer; }
+.transaksi-modal-body { 
+  padding: 12px 16px; 
+  overflow: auto;
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+.transaksi-modal-body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+.transaksi-modal-search { display:flex; gap:8px; align-items:center; margin-bottom:12px }
+.transaksi-modal-search input { flex:1; padding:10px 12px; border-radius:8px; border:1px solid #e6e6e6 }
+.transaksi-modal-tabs { display:flex; gap:8px; padding:8px 0; margin-bottom:12px; border-bottom:1px solid #f2f2f2 }
+.transaksi-modal-tabs .tab { background:none; border:0; padding:8px 12px; cursor:pointer; border-radius:6px }
+.transaksi-modal-tabs .tab.active { background: #fff; box-shadow: 0 1px 0 #ddd; font-weight:600; color:#d32 }
+.transaksi-modal-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px; 
+  padding: 8px 0 40px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.transaksi-modal-grid::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+.transaksi-car-card { display:flex; gap:12px; padding:12px; border-radius:8px; border:1px solid #eee; align-items:center; background:var(--card-bg, #fff) }
+.car-card-info { flex:1 }
+.car-name { font-weight:700; margin-bottom:6px }
+.car-price { color:#666; margin-bottom:6px }
+.car-tags { display:flex; gap:6px; flex-wrap:wrap }
+.car-tag { background:#f3f4f6; color:#111; padding:4px 8px; border-radius:999px; font-size:12px; }
+
+/* fuel tag (blue text) */
+.car-tag.fuel {
+  color: #2563eb;
+  background: rgba(37,99,235,0.06);
+  font-weight: 600;
+}
+
+/* force uppercase for fuel tags */
+.car-tag.fuel { text-transform: uppercase; }
+.car-card-img img { width:230px; height:90px; object-fit:cover; border-radius:6px }
+.img-placeholder { width:120px; height:70px; display:flex; align-items:center; justify-content:center; background:#f6f6f6; border-radius:6px; color:#999 }
+.transaksi-loading, .transaksi-empty { padding:24px; text-align:center; color:#777 }
+.car-class { font-size:13px; color:#444; margin-top:6px }
+.car-year { font-size:12px; color:#666; margin-top:4px }
+
+.price-label { font-size:12px; color:#666; margin-bottom:4px }
+.price-amount { font-weight:700; color:#111; font-size:15px }
+
+.price-inline { display:inline-flex; gap:8px; align-items:center; margin-bottom:6px }
+.price-prefix { font-size:12px; color:#6b7280; font-weight:400 }
+.price-amount-inline { font-weight:700; color:#111; font-size:14px }
+
+/* selected model header and variants */
+.transaksi-selected-header { display:flex; gap:16px; align-items:center; padding:0px 0 }
+.selected-title { flex:1; font-size:20px; font-weight:700 }
+.selected-image img { width:360px; height:240px; object-fit:contain; border-radius:6px }
+.transaksi-sep { border:0; height:6px; background:linear-gradient(90deg, transparent, #e11, transparent); margin:8px 0 16px }
+.variant-grid { display:grid; grid-template-columns: 1fr 1fr; gap:12px }
+.variant-option-card { border:1px solid #eee; padding:16px; border-radius:8px; background:var(--card-bg,#fff); box-shadow:0 6px 18px rgba(0,0,0,0.03); cursor:pointer }
+.variant-option-card .variant-name { font-weight:600; margin-bottom:8px }
+.variant-option-card .variant-price { color:#6b7280; margin-bottom:8px }
+.variant-option-card.off { border-color:#f1f5f9 }
+.variant-option-card.on { border-color:#f1f5f9 }
+.variant-option-card.selected { border-color:#d32; box-shadow:0 6px 20px rgba(209,72,65,0.06) }
+.pilihan-warna { font-size:13px; color:#444; margin:8px 0 }
+.variant-colors { display:flex; gap:8px; align-items:center }
+
+.variants-and-transaksi { display:flex; gap:20px; align-items:flex-start }
+.transaksi-right-panel { flex:1; }
+.trx-box { border:1px solid #eee; padding:16px; border-radius:8px; background:var(--card-bg,#fff); box-shadow:0 6px 18px rgba(0,0,0,0.03) }
+.trx-box h4 { margin:0 0 8px 0 }
+.trx-option { display:flex; gap:12px; align-items:center; margin-bottom:8px }
+.trx-option input[type="radio"] { margin-right:6px }
+.trx-box input[type="email"] { width:100%; padding:8px; border-radius:6px; border:1px solid #e6e6e6 }
+.cicilan-note { font-size:13px; color:#666; margin-top:8px }
+.color-chip { width:34px; height:34px; padding:4px; border-radius:999px; border:1px solid #ddd; background:#fff; display:inline-flex; align-items:center; justify-content:center; cursor:pointer }
+.color-chip.active { box-shadow:0 0 0 3px rgba(209, 72, 65, 0.12); border-color:#d32 }
+.color-swatch { width:18px; height:18px; border-radius:999px; display:block }
+.color-swatch.empty { background:#f3f3f3; border:1px dashed #ddd }
+.back-btn { background:none; border:0; font-size:20px; margin-right:8px; cursor:pointer }
+
+.transaksi-modal-footer { padding:12px 16px; border-top:1px solid #eee; display:flex; justify-content:center }
+.choose-btn { background:#d32; color:#fff; padding:12px 20px; border-radius:8px; border:0; font-weight:700; width:60% }
+.choose-btn:disabled { opacity:0.5; cursor:not-allowed }
+
+/* Add support for new step-based layout */
+.variant-grid.full-width {
+  /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.transaction-details {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.transaksi-modal-grid.step-select {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 8px 0 40px;
+}
+
+.transaksi-modal-grid:not(.step-select) {
+  display: block;
+  padding: 8px 0 40px;
+}
+
+/* Grid layout khusus untuk step select */
+.transaksi-modal-grid.selection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 16px;
+  width: 100%;
+}
+
+/* Full width untuk step variant dan transaction */
+.transaksi-variants {
+  width: 100%;
+  padding: 16px;
+}
+
+/* Styling untuk card di grid */
+.transaksi-car-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.transaksi-car-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Grid layout for step 1 and 3 */
+.selection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 16px;
+  width: 100%;
+}
+
+/* Full width layout for step 2 */
+.variant-selection {
+  width: 100%;
+  padding: 16px;
+}
+
+/* Transaction boxes styling */
+.trx-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  width: 100%;
+  min-width: 400px; /* Ensure minimum width */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.trx-box:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.trx-box h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* Loading overlay inside modal */
+.transaksi-modal-loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(4px);
+  transition: opacity 180ms ease-in-out, visibility 180ms ease-in-out;
+  z-index: 60;
+}
+.transaksi-modal-loading-overlay .spinner {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 6px solid rgba(16,185,129,0.12);
+  border-top-color: #10b981;
+  animation: modal-spin 1s linear infinite;
+  box-shadow: 0 6px 20px rgba(16,185,129,0.12);
+}
+.transaksi-modal-loading-overlay .loading-label {
+  margin-top: 12px;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: center;
+}
+@keyframes modal-spin {
+  to { transform: rotate(360deg); }
+}
+
+.trx-option {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.trx-option label {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 16px 24px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.trx-option label:hover {
+  background: #f1f5f9;
+}
+
+.trx-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.trx-option input[type="radio"] + span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.trx-option input[type="radio"] + span:before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.trx-option input[type="radio"]:checked + span:before {
+  border-color: #d32;
+  border-width: 6px;
+  background: white;
+}
+
+.trx-option input[type="radio"]:checked + span {
+  color: #111827;
+}
+
+.trx-option input[type="radio"]:checked + span:after {
+  transform: scale(1);
+}
+
+.trx-option input[type="radio"]:checked ~ label {
+  border-color: #d32;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(211, 51, 34, 0.08);
+}
+
+.buyer-form-group {
+  margin-bottom: 20px;
+}
+
+.buyer-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.buyer-form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  min-height: 45px; /* Make inputs taller */
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.buyer-form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.buyer-form-group input::placeholder {
+  color: #9ca3af;
+}
+
+.cicilan-note {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Hide number input spinners for cicilan inputs but keep input type=number */
+.cicilan-inputs input[type="number"]::-webkit-outer-spin-button,
+.cicilan-inputs input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cicilan-inputs input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.cicilan-summary {
+  margin-top: 12px;
+  padding: 12px;
+  background: #fff7ed;
+  border: 1px solid #fde3bf;
+  border-radius: 8px;
+  color: #92400e;
+}
+.cicilan-summary .row { display:flex; justify-content:space-between; gap:12px; margin-bottom:6px; font-size:14px }
+.cicilan-summary .row .label { color:#7c2d12 }
+.cicilan-summary .row .value { font-weight:700; color:#92400e }
+
+/* Transaction step styling */
+.transaction-details.selection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding: 24px;
+  width: 100%;
+  max-width: 100%; /* Ensure full width */
+}

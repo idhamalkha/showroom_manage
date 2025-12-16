@@ -1,0 +1,732 @@
+.hr-modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0, 0, 0, 0.55) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 99999999 !important;
+  padding: 1rem !important;
+  animation: fadeIn 0.3s ease-out !important;
+  backdrop-filter: blur(10px) !important;
+  pointer-events: auto !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hr-modal-content {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.18),
+    0 0 1px rgba(0, 0, 0, 0.12);
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  z-index: 99999999 !important;
+  pointer-events: auto !important;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes popoverIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Header with subtle minimalist design */
+.hr-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 2.2rem 2.2rem;
+  border-radius: 1.5rem 1.5rem 0 0;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  background-attachment: fixed;
+}
+
+.hr-modal-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="20" fill="white"/><circle cx="80" cy="80" r="25" fill="white"/></svg>');
+  background-size: 300px;
+  pointer-events: none;
+}
+
+.gradient-hadir {
+  background: linear-gradient(135deg, #6ba3f5 0%, #4a8fd8 100%);
+}
+
+.gradient-cuti {
+  background: linear-gradient(135deg, #a892d8 0%, #8574c5 100%);
+}
+
+.gradient-lembur {
+  background: linear-gradient(135deg, #f5a957 0%, #e89441 100%);
+}
+
+.hr-modal-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.hr-modal-title h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.6px;
+}
+
+.hr-modal-title p {
+  margin: 0.6rem 0 0 0;
+  font-size: 0.85rem;
+  opacity: 0.92;
+  font-weight: 400;
+}
+
+.hr-modal-close {
+  background: rgba(255, 255, 255, 0.18);
+  border: none;
+  color: white;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(4px);
+}
+
+.hr-modal-close:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: scale(1.1);
+}
+
+.hr-modal-close:active {
+  transform: scale(0.96);
+}
+
+/* Form styling - minimalist white theme */
+.hr-modal-form {
+  padding: 2.2rem 2.2rem;
+}
+
+.hr-form-group {
+  margin-bottom: 1.6rem;
+}
+
+.hr-form-group label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+  font-weight: 650;
+  color: #1a2638;
+  font-size: 0.93rem;
+  letter-spacing: -0.4px;
+}
+
+.hr-form-group label svg {
+  margin: 0 auto;
+  color: #6ba3f5;
+}
+
+.hr-form-group small {
+  display: block;
+  margin-top: 0.6rem;
+  color: #7d8c9a;
+  font-size: 0.8rem;
+}
+
+.hr-form-input,
+.hr-form-textarea {
+  width: 100%;
+  padding: 0.9rem 1.15rem;
+  border: 1.5px solid #e0e6eb;
+  border-radius: 0.85rem;
+  font-size: 0.95rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  transition: all 0.25s ease;
+  background: #f7f9fc;
+  color: #1a2638;
+}
+
+.hr-form-input::placeholder,
+.hr-form-textarea::placeholder {
+  color: #a8b5c2;
+}
+
+.hr-form-input:focus,
+.hr-form-textarea:focus {
+  outline: none;
+  border-color: #6ba3f5;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(107, 163, 245, 0.1), inset 0 0 0 1px rgba(107, 163, 245, 0.05);
+}
+
+.hr-form-textarea {
+  resize: none;
+  min-height: 110px;
+}
+
+/* Hide number input spinner buttons */
+.hr-form-input[type="number"]::-webkit-outer-spin-button,
+.hr-form-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hr-form-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Hide scrollbar in modal but keep functionality */
+.hr-modal-content::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.hr-modal-content {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Info boxes - subtle minimalist style */
+.hr-info-box {
+  background: linear-gradient(135deg, #f6f9fc 0%, #f0f5fa 100%);
+  border-left: 3.5px solid #6ba3f5;
+  padding: 1.2rem 1.4rem;
+  border-radius: 0.85rem;
+  margin: 1.3rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hr-info-box.compensation {
+  border-left-color: #f5a957;
+}
+
+.info-label {
+  color: #7d8c9a;
+  font-weight: 550;
+  font-size: 0.85rem;
+  letter-spacing: -0.2px;
+}
+
+.info-value {
+  color: #1a2638;
+  font-weight: 750;
+  font-size: 1.15rem;
+}
+
+/* Error message - minimalist red */
+.hr-modal-error {
+  background: linear-gradient(135deg, #fff9f8 0%, #ffe8e5 100%);
+  border: 1.5px solid #f5bfb3;
+  border-radius: 0.85rem;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.6rem;
+  color: #a73c30;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 500;
+}
+
+/* Success message - minimalist green */
+.hr-modal-success {
+  background: linear-gradient(135deg, #f2fdf7 0%, #e8fbf0 100%);
+  border: 1.5px solid #9be0c3;
+  border-radius: 0.85rem;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.6rem;
+  color: #0f7d4a;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 500;
+}
+
+/* Modal footer - clean white */
+.hr-modal-footer {
+  display: flex;
+  gap: 1.1rem;
+  padding: 1.6rem 2.2rem;
+  border-top: 1px solid #f0f3f7;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+  border-radius: 0 0 1.5rem 1.5rem;
+}
+
+/* Button styling - minimalist elegant */
+.hr-btn {
+  flex: 1;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 0.85rem;
+  font-weight: 620;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  letter-spacing: -0.3px;
+}
+
+.hr-btn:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.hr-btn-secondary {
+  background: #f5f7fa;
+  color: #5a6c7d;
+  border: 1.5px solid #e8ecf0;
+}
+
+.hr-btn-secondary:hover:not(:disabled) {
+  background: #f0f3f7;
+  border-color: #d4dce5;
+  transform: translateY(-1px);
+}
+
+.hr-btn-primary-hadir {
+  background: linear-gradient(135deg, #6ba3f5 0%, #4a8fd8 100%);
+  color: white;
+  box-shadow: 0 6px 16px rgba(107, 163, 245, 0.25);
+}
+
+.hr-btn-primary-hadir:hover:not(:disabled) {
+  box-shadow: 0 10px 24px rgba(107, 163, 245, 0.35);
+  transform: translateY(-2px);
+}
+
+.hr-btn-primary-hadir:active:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(107, 163, 245, 0.25);
+}
+
+.hr-btn-primary-cuti {
+  background: linear-gradient(135deg, #a892d8 0%, #8574c5 100%);
+  color: white;
+  box-shadow: 0 6px 16px rgba(168, 146, 216, 0.25);
+}
+
+.hr-btn-primary-cuti:hover:not(:disabled) {
+  box-shadow: 0 10px 24px rgba(168, 146, 216, 0.35);
+  transform: translateY(-2px);
+}
+
+.hr-btn-primary-cuti:active:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(168, 146, 216, 0.25);
+}
+
+.hr-btn-primary-lembur {
+  background: linear-gradient(135deg, #f5a957 0%, #e89441 100%);
+  color: white;
+  box-shadow: 0 6px 16px rgba(245, 169, 87, 0.25);
+}
+
+.hr-btn-primary-lembur:hover:not(:disabled) {
+  box-shadow: 0 10px 24px rgba(245, 169, 87, 0.35);
+  transform: translateY(-2px);
+}
+
+.hr-btn-primary-lembur:active:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 169, 87, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .hr-modal-content {
+    border-radius: 1.5rem 1.5rem 0 0;
+    max-height: calc(100vh - 2rem);
+  }
+
+  .hr-modal-header {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.8rem 1.8rem;
+  }
+
+  .hr-modal-title {
+    width: 100%;
+  }
+
+  .hr-modal-close {
+    align-self: flex-end;
+  }
+
+  .hr-modal-form {
+    padding: 1.8rem 1.8rem;
+  }
+
+  .hr-modal-footer {
+    padding: 1.6rem 1.8rem;
+    gap: 0.8rem;
+  }
+
+  .hr-btn {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Utility classes */
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+/* Date Picker Styles - Sophisticated calendar */
+.hr-date-picker-wrapper {
+  position: relative;
+}
+
+.hr-date-picker-button {
+  width: 100%;
+  padding: 0.9rem 1.15rem;
+  border: 1.5px solid #e0e6eb;
+  border-radius: 0.85rem;
+  font-size: 0.95rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+  background: #f7f9fc;
+  color: #1a2638;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.25s ease;
+  font-weight: 500;
+}
+
+.hr-date-picker-button:hover {
+  border-color: #6ba3f5;
+  background: #ffffff;
+}
+
+.hr-date-picker-button:focus {
+  outline: none;
+  border-color: #6ba3f5;
+  box-shadow: 0 0 0 4px rgba(107, 163, 245, 0.1);
+}
+
+.hr-date-picker-button svg {
+  color: #7d8c9a;
+  flex-shrink: 0;
+}
+
+.hr-date-picker-popover {
+  position: fixed;
+  background: white;
+  border: 1.5px solid #e0e6eb;
+  border-radius: 1rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  padding: 0.85rem;
+  z-index: 100000000 !important;
+  min-width: 300px;
+  max-width: 320px;
+  animation: popoverIn 0.25s ease-out;
+}
+
+.hr-date-picker-header {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f0f3f7;
+}
+
+.hr-date-picker-header > div {
+  flex: 1;
+}
+
+.hr-date-picker-select {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #e0e6eb;
+  border-radius: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1a2638;
+  background: #f7f9fc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.hr-date-picker-select:hover {
+  border-color: #6ba3f5;
+  background: #ffffff;
+}
+
+.hr-date-picker-select:focus {
+  outline: none;
+  border-color: #6ba3f5;
+  box-shadow: 0 0 0 3px rgba(107, 163, 245, 0.1);
+}
+
+.hr-date-picker-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.hr-date-picker-weekday {
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #8a95a1;
+  padding: 0.4rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.hr-date-picker-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.2rem;
+}
+
+.hr-date-picker-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1a2638;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  padding: 0;
+  min-height: 32px;
+}
+
+.hr-date-picker-day:hover:not(.disabled) {
+  background: #f0f5fa;
+  border-color: #d4dce5;
+}
+
+.hr-date-picker-day.selected {
+  background: linear-gradient(135deg, #6ba3f5 0%, #4a8fd8 100%);
+  color: white;
+  font-weight: 600;
+  border-color: #6ba3f5;
+}
+
+.hr-date-picker-day.selected:hover {
+  box-shadow: 0 4px 12px rgba(107, 163, 245, 0.25);
+}
+
+.hr-date-picker-day.today {
+  border-color: #6ba3f5;
+  font-weight: 600;
+  color: #6ba3f5;
+}
+
+.hr-date-picker-day.disabled {
+  color: #d4dce5;
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Dropdown Styles - Elegant dropdown */
+.hr-dropdown-wrapper {
+  position: relative;
+}
+
+.hr-dropdown-button {
+  width: 100%;
+  padding: 0.75rem 0.95rem;
+  border: 1.5px solid #e0e6eb;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+  background: #f7f9fc;
+  color: #1a2638;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.25s ease;
+  font-weight: 500;
+}
+
+.hr-dropdown-button:hover {
+  border-color: #6ba3f5;
+  background: #ffffff;
+}
+
+.hr-dropdown-button:focus {
+  outline: none;
+  border-color: #6ba3f5;
+  box-shadow: 0 0 0 4px rgba(107, 163, 245, 0.1);
+}
+
+.hr-dropdown-button svg {
+  color: #7d8c9a;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  width: 16px;
+  height: 16px;
+}
+
+.hr-dropdown-button svg.open {
+  transform: rotate(180deg);
+}
+
+.hr-dropdown-menu {
+  position: fixed;
+  background: white;
+  border: 1.5px solid #e0e6eb;
+  border-radius: 0.85rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 100000000 !important;
+  max-height: 320px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #d4dce5 transparent;
+  animation: popoverIn 0.2s ease-out;
+}
+
+.hr-dropdown-menu::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+
+.hr-dropdown-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hr-dropdown-menu::-webkit-scrollbar-thumb {
+  background: #d4dce5;
+  border-radius: 3px;
+}
+
+.hr-dropdown-menu::-webkit-scrollbar-thumb:hover {
+  background: #a8b5c2;
+}
+
+.hr-dropdown-menu::-webkit-scrollbar-thumb:hover {
+  background: #c4cdd5;
+}
+
+.hr-dropdown-item {
+  width: 100%;
+  padding: 0.8rem 1.1rem;
+  border: none;
+  background: transparent;
+  color: #1a2638;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+  padding-left: 2.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.hr-dropdown-item:first-child {
+  border-radius: 0.7rem 0.7rem 0 0;
+}
+
+.hr-dropdown-item:last-child {
+  border-radius: 0 0 0.7rem 0.7rem;
+}
+
+.hr-dropdown-item:hover {
+  background: #f5f9fc;
+}
+
+.hr-dropdown-item.selected {
+  background: linear-gradient(135deg, #eef5ff 0%, #e8f0ff 100%);
+  color: #6ba3f5;
+  font-weight: 600;
+}
+
+.hr-dropdown-item.selected::before {
+  content: '\2713';
+  position: absolute;
+  left: 0.8rem;
+  font-weight: 700;
+  color: #6ba3f5;
+  font-size: 1rem;
+}
+
+.hr-dropdown-item:hover {
+  background: #f0f5fa;
+}
+
+.hr-dropdown-item.selected {
+  background: linear-gradient(135deg, #f0f5fa 0%, #e8f0f9 100%);
+  color: #6ba3f5;
+  font-weight: 600;
+}
+
+.hr-dropdown-item.selected::before {
+  content: '✓';
+  color: #6ba3f5;
+  font-weight: 700;
+  margin-left: auto;
+}

@@ -1,0 +1,368 @@
+/* HRD Dashboard Styling */
+
+.dashhrd-container {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.dashhrd-ready {
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Top Card Styling */
+.dashhrd-top-card {
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashhrd-title {
+  background: linear-gradient(135deg, #1e40af 0%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashhrd-subtitle {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Panel Cards */
+.dashhrd-panel {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashhrd-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dashhrd-panel:hover::before {
+  left: 100%;
+}
+
+.dashhrd-label {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.7rem;
+}
+
+.dashhrd-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.dashhrd-meta {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+/* Card Styling */
+.dashhrd-card {
+  background: white;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 5;
+}
+
+.dashhrd-card h4 {
+  position: relative;
+  z-index: 10;
+}
+
+.dashhrd-card:hover {
+  /* NO hover effect for main cards */
+  box-shadow: inherit;
+  transform: none;
+}
+
+/* Avatar */
+.dashhrd-avatar {
+  animation: avatarPop 0.5s ease-out;
+}
+
+@keyframes avatarPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dashhrd-avatar img {
+  transition: transform 0.3s ease;
+}
+
+/* .dashhrd-avatar:hover img {
+  transform: scale(1.05);
+} */
+
+/* Top Sales Card */
+.dashhrd-top-sales-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashhrd-top-sales-card .space-y-4 {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 500px;
+  padding-right: 0.5rem;
+}
+
+.dashhrd-top-sales-card .space-y-4::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dashhrd-top-sales-card .space-y-4::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 2px;
+}
+
+.dashhrd-top-sales-card .space-y-4::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+.dashhrd-top-sales-card .space-y-4::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Attendance Card */
+.dashhrd-attendance-card {
+  animation: slideRight 0.5s ease-out 0.1s both;
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dashhrd-attendance-card .grid {
+  transition: all 0.3s ease;
+}
+
+/* Only grid items inside attendance card can be hovered */
+.dashhrd-attendance-card > div:nth-child(3) .grid > div {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.dashhrd-attendance-card > div:nth-child(3) .grid > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Overtime Card */
+.dashhrd-overtime-card {
+  animation: slideLeft 0.5s ease-out 0.2s both;
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dashhrd-overtime-card .space-y-2 {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.dashhrd-overtime-card .space-y-2::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dashhrd-overtime-card .space-y-2::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 2px;
+}
+
+.dashhrd-overtime-card .space-y-2::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+.dashhrd-overtime-card .space-y-2::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dashhrd-overtime-card .flex:hover {
+  background-color: #f8fafc !important;
+}
+
+/* Contracts Card */
+.dashhrd-contracts-card {
+  animation: slideUp 0.5s ease-out 0.3s both;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashhrd-contracts-card .space-y-3 > div {
+  transition: none;
+}
+
+.dashhrd-contracts-card .space-y-3 > div:hover {
+  /* NO hover effect */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .dashhrd-panel {
+    min-height: 100px;
+  }
+  
+  .dashhrd-value {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashhrd-title {
+    font-size: 1.5rem;
+  }
+  
+  .dashhrd-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .dashhrd-avatar {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .dashhrd-avatar img {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .dashhrd-card {
+    padding: 1rem;
+  }
+  
+  .dashhrd-panel {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashhrd-top-card {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .dashhrd-avatar {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .dashhrd-avatar img {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .dashhrd-title {
+    font-size: 1.25rem;
+  }
+  
+  .dashhrd-value {
+    font-size: 1.25rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .dashhrd-container {
+    background: white;
+  }
+  
+  .dashhrd-card {
+    page-break-inside: avoid;
+  }
+}
+
+/* Loading and Error States */
+.dashhrd-container.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.dashhrd-container.error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: #991b1b;
+}

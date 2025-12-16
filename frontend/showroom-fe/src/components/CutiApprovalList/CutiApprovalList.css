@@ -1,0 +1,310 @@
+/* Cuti Approval List Styles */
+
+.cuti-approval-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.list-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  color: #94a3b8;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error State */
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  color: #dc2626;
+  text-align: center;
+}
+
+.error-state svg {
+  margin-bottom: 1rem;
+}
+
+.retry-btn {
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.retry-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.empty-state svg {
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Cuti Items */
+.cuti-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cuti-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.cuti-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+/* Card Left - Status Icon */
+.card-left {
+  display: flex;
+  align-items: flex-start;
+}
+
+.card-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: white;
+  border-radius: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Card Middle - Content */
+.card-middle {
+  flex: 1;
+  min-width: 0;
+}
+
+.employee-name {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.employee-jabatan {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.85rem;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.cuti-details {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.detail {
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.duration-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.reason-title {
+  margin: 0.75rem 0 0.35rem 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.reason-text {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  background: #f8fafc;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border-left: 3px solid #e0f2fe;
+}
+
+.submitted-time {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* Card Right - Actions */
+.card-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.approve-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.approve-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cuti-card {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .card-right {
+    justify-content: flex-start;
+  }
+
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .cuti-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

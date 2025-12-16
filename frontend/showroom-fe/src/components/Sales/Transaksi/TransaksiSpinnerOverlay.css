@@ -1,0 +1,30 @@
+.tx-spinner-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.tx-spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+.tx-spinner-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  letter-spacing: 0.3px;
+}

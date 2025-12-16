@@ -1,0 +1,13 @@
+/* Theme toggle specific styles */
+.theme-toggle-wrap {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  padding: 6px 0;
+}
+
+.theme-toggle {
+  /* ... theme toggle styles ... */
+}
+
+/* ... rest of theme toggle styles ... */

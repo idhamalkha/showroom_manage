@@ -1,0 +1,1392 @@
+/* Scoped styles for Mobil / Merek management (unique class names to avoid conflicts) */
+.mobil-section { padding: 12px 0; color: var(--panel-text); position: relative; }
+.mobil-header { display:flex; align-items:center; justify-content:space-between; margin-bottom: 12px; gap:12px; }
+.mobil-header-left { display:flex; align-items:center; gap:10px; }
+.mobil-header-right { display:flex; align-items:center; gap:10px; }
+
+/* header navigation buttons (placed at left area) */
+.mobil-header-nav { display:flex; gap:8px; align-items:center; }
+.mobil-nav-btn {
+  width:36px;
+  height:36px;
+  border-radius:9999px;
+  display:inline-grid;
+  place-items:center;
+  background: var(--card-bg, #fff);
+  color: var(--panel-text);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 28px rgba(2,6,23,0.06);
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+.mobil-nav-btn:disabled { opacity: 0.42; cursor: default; box-shadow: none; transform: none; }
+.mobil-nav-btn:hover:not(:disabled) { transform: translateY(-2px); }
+.mobil-nav-btn svg { display:block; width:14px; height:14px; }
+
+/* small visual offset so the buttons sit where the user marked in screenshot */
+.mobil-header { position: relative; }
+.mobil-header-left { display:flex; align-items:center; gap:10px; padding-left: 8px; }
+
+/* ensure HRD-filter visual integrates: if hrd.css present, hrd-filter-btn will style it */
+/* fallback for hrd-filter-btn if theme file not loaded */
+.hrd-filter-btn {
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(2,10,18,0.04);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.hrd-filter-btn:hover { filter: brightness(.98); }
+
+.mobil-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 18px;
+  perspective: 1000px; /* For 3D animation effect */
+}
+
+/* Responsive for 1366x768 laptop screens */
+@media (max-width: 1400px) {
+  .mobil-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1200px) { .mobil-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 900px) { .mobil-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .mobil-grid { grid-template-columns: 1fr; } }
+
+/* Card entrance animation */
+.animate-entrance {
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  animation: cardEntrance 0.45s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  60% {
+    transform: translateY(-4px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.mobil-card {
+  padding: 8px;
+  min-height: 220px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  background: var(--panel-bg);
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+  position: relative;
+}
+
+/* Responsive card size for 1366x768 */
+@media (max-width: 1400px) {
+  .mobil-card {
+    padding: 6px;
+    min-height: 200px;
+    gap: 6px;
+  }
+}
+/* Hide cards on inactive pages until active */
+.mobil-carousel-page:not(.active) .mobil-card {
+  opacity: 0 !important;
+  pointer-events: none;
+  visibility: hidden;
+}
+.mobil-select { position:absolute; left:10px; top:10px; z-index:10; }
+.mobil-select input { width:18px; height:18px; cursor:pointer; }
+
+.mobil-logo-wrap {
+  width: 100%;
+  height: 220px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  overflow:hidden;
+  background: transparent;
+}
+.mobil-logo { width: 80%; height: 80%; object-fit:contain; }
+.mobil-logo-placeholder { width:96px; height:96px; border-radius:50%; background:#d1d5db; display:grid; place-items:center; font-weight:700; color:#fff; }
+
+.mobil-card-footer.minimalist { height: 0; padding: 0; overflow: hidden; }
+
+/* view modal (nearly full screen) */
+.mobil-view-modal {
+  width: min(1100px, 96vw);
+  max-height: 92vh;
+  overflow: auto;
+  border-radius: 12px;
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), var(--panel-bg));
+  box-shadow: 0 30px 80px rgba(2,6,23,0.35);
+  color: var(--panel-text);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.mobil-view-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* keep padding controlled by inline style if needed */
+}
+.mobil-view-left { display: none !important; }
+.mobil-view-right,
+.mobil-view-right.full { width: 100%; }
+
+.mobil-view-right { flex: 1 1 auto; padding: 8px 12px; overflow: auto; max-height: 76vh; }
+
+.mobil-view-logo { width: 92%; height: auto; max-height: 72vh; object-fit:contain; border-radius:8px; }
+.mobil-logo-placeholder.large { width:220px; height:220px; font-size:64px; }
+
+.mobil-overlay { position: fixed; inset:0; z-index:80; display:grid; place-items:center; background: rgba(0,0,0,0.4); }
+.mobil-modal-close {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--card-bg, #fff);      /* follow theme background */
+  color: var(--panel-text);              /* follow theme text color */
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 260;
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--panel-text) 6%, rgba(2,6,23,0.08));
+  border: 1px solid color-mix(in srgb, var(--panel-text) 8%, rgba(0,0,0,0.04));
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+.mobil-modal-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--panel-text) 10%, rgba(2,6,23,0.12));
+  background: color-mix(in srgb, var(--card-bg) 88%, var(--panel-text) 6%);
+}
+
+.mobil-modal-close:focus {
+  outline: 3px solid color-mix(in srgb, var(--accent, #16a34a) 18%, transparent);
+  outline-offset: 2px;
+}
+
+/* vehicle modal close tweak (override for smaller spacing inside vehicle modal) */
+.vehicle-modal .mobil-modal-close {
+  right: 16px;
+  top: 8px;
+  z-index: 12;
+}
+
+/* beri ruang ekstra di topbar supaya tombol action tidak tertimpa tombol close */
+.mobil-view-topbar {
+  /* sebelumnya: padding-right: 56px; */
+  padding-right: 96px; /* cukup ruang untuk tombol close + margin */
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  margin-bottom: 12px;
+}
+
+/* responsive: kurangi padding kanan pada layar kecil */
+@media (max-width: 720px) {
+  .mobil-view-topbar {
+    padding-right: 24px;
+  }
+}
+
+/* jika masih ingin menambah jarak hanya untuk aksi kanan, gunakan rule ini */
+.mobil-view-topbar-right { margin-right: 8px; }
+
+/* vehicle list inside brand view */
+.mobil-view-cars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* flexible: ~3 per row on wide modal */
+  gap: 14px;
+  margin-top: 8px;
+}
+@media (max-width: 900px) { .mobil-view-cars { grid-template-columns: 1fr; } }
+
+.car-card {
+  display: flex;
+  gap: 18px;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--panel-bg);
+  border: 1px solid rgba(0,0,0,0.04);
+  align-items: center;
+  min-height: 120px;
+  box-sizing: border-box;
+}
+.car-card.selected {
+  border: 2px solid var(--accent, #16a34a);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+}
+.car-thumb-wrap { width: 120px; height: 84px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-radius:8px; background: rgba(0,0,0,0.02); }
+.car-thumb { width: 100%; height: 100%; object-fit: cover; }
+.car-meta { flex: 1 1 auto; display:flex; flex-direction:column; }
+
+.car-name { font-weight:700; }
+.car-sub { font-size:13px; }
+
+.car-select-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--muted);
+  background: rgba(0,0,0,0.04);
+}
+.car-select-tag.active {
+  background: var(--accent, #16a34a);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* vehicle modal */
+.vehicle-modal {
+  width: min(720px, 96vw);
+  background: var(--panel-bg);
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 30px 80px rgba(2,6,23,0.18);
+  position: relative;
+}
+.vehicle-modal .mobil-modal-close { right:10px; top:8px; }
+
+/* inputs & preview reuse */
+.mobil-label { display:block; margin-top:10px; font-size:13px; color:var(--panel-text); }
+.mobil-input, .mobil-textarea { width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(0,0,0,0.06); margin-top:6px; box-sizing:border-box; background:white; }
+.mobil-preview-wrap { margin-top:10px; display:flex; justify-content:center; }
+.mobil-preview { max-width:320px; max-height:180px; object-fit:contain; border-radius:8px; }
+
+.mobil-modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:12px; }
+
+/* toasts */
+.mobil-toasts { position: fixed; right: 18px; bottom: 18px; display:flex; flex-direction:column; gap:8px; z-index:120; }
+.mobil-toast { padding:10px 12px; border-radius:8px; color:white; box-shadow:0 10px 30px rgba(2,6,23,0.12); }
+.mobil-toast.ok { background: #16a34a; }
+.mobil-toast.err { background: #e53e3e; }
+
+/* error/empty */
+.mobil-error { color: #e53e3e; margin-bottom:12px; }
+.mobil-empty { padding: 18px; color: var(--muted); text-align:center; }
+
+/* buttons primitives (if not present elsewhere) */
+.btn { padding:8px 12px; border-radius:8px; border: none; cursor:pointer; }
+.btn.primary { background: var(--accent, #16a34a); color: #fff; }
+.btn.neutral { background: rgba(0,0,0,0.04); color: var(--panel-text); }
+.btn.danger { background: #E53E3E; color: #fff; }
+
+/* topbar layout inside modal */
+.mobil-view-topbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  margin-bottom: 12px;
+}
+
+/* left: small brand logo + icon buttons */
+.mobil-view-topbar-left { display:flex; align-items:center; gap:8px; }
+.mobil-brand-mini img { width:48px; height:48px; object-fit:contain; border-radius:8px; }
+.mobil-logo-placeholder.mini { width:48px; height:48px; border-radius:8px; display:grid; place-items:center; font-weight:700; color:#fff; }
+.icon-btn { margin-left: 8px; }
+
+/* small refinements for topbar icon spacing (non-breaking) */
+.mobil-view-topbar { align-items: center; gap: 14px; padding: 10px 6px 14px; }
+
+/* Icon buttons (small, circular) */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: none;
+  transition: background .12s, transform .06s;
+}
+.icon-btn:hover { background: rgba(0,0,0,0.04); transform: translateY(-1px); }
+
+/* Top-left actions container next to brand name */
+.mobil-top-left-actions { display:flex; gap:8px; align-items:center; margin-left:6px; }
+
+/* Ensure view topbar layout */
+.mobil-view-topbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  padding-bottom: 12px;
+}
+.mobil-view-topbar-left { display:flex; align-items:center; gap:12px; }
+
+/* Buttons in view topbar right */
+.mobil-view-topbar-right { display:flex; gap:10px; align-items:center; }
+
+/* Ensure .btn.primary uses primary color from existing file */
+.btn.primary {
+  background: var(--accent, #16a34a); /* fallback green if var not set */
+  color: #fff;
+}
+
+/* Hide filename element (if any left) */
+.mobil-file-name { display: none; }
+
+/* --- Modal / overlay fixes (override global styles) --- */
+.mobil-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,0.44);
+  z-index: 200; /* pastikan di atas konten aplikasi */
+}
+
+/* Close button: beri background, ukuran, dan jarak yang lebih aman */
+.mobil-modal-close {
+  position: absolute;
+  right: 10px; /* lebih jauh dari tepi supaya tidak menimpa topbar action */
+  top: 10px;
+  width: 34px;
+  height: 34px;
+  line-height: 1;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.98);
+  color: var(--panel-text);
+  font-size: 18px;
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 260; /* selalu di atas konten modal */
+  box-shadow: 0 6px 18px rgba(2,6,23,0.08);
+}
+
+/* Jika vehicle-modal / form punya varian selector */
+.vehicle-modal .mobil-modal-close,
+.mobil-modal .mobil-modal-close { right: 20px; top: 12px; }
+
+/* Tombol di dalam modal: override kuat agar tidak transparan / ter-inherit */
+.mobil-overlay .mobil-modal .btn,
+.mobil-overlay .vehicle-modal .btn,
+.mobil-overlay .mobil-modal-actions .btn,
+.mobil-overlay .mobil-modal .mobil-modal-actions .btn {
+  background: var(--panel-bg) !important;
+  color: var(--panel-text) !important;
+  min-width: 72px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.08) !important;
+  opacity: 1 !important;
+  transform: none;
+}
+
+/* varian warna (spesifik) */
+
+/* fuel tag styling: blue text to make fuel type stand out */
+.avm-tag-fuel {
+  color: #2563eb; /* blue-600 */
+  font-weight: 600;
+}
+
+.car-select-tag.fuel {
+  color: #2563eb;
+  background: rgba(37,99,235,0.06);
+  font-weight: 600;
+}
+
+/* Make fuel tags uppercase for quick visual scan */
+.avm-tag-fuel, .car-select-tag.fuel {
+  text-transform: uppercase;
+}
+.mobil-overlay .mobil-modal .btn.primary,
+.mobil-overlay .vehicle-modal .btn.primary {
+  background: var(--accent, #16a34a) !important;
+  color: #fff !important;
+}
+.mobil-overlay .mobil-modal .btn.neutral,
+.mobil-overlay .vehicle-modal .btn.neutral {
+  background: rgba(0,0,0,0.06) !important;
+  color: var(--panel-text) !important;
+  box-shadow: none !important;
+}
+.mobil-overlay .mobil-modal .btn.danger,
+.mobil-overlay .vehicle-modal .btn.danger {
+  background: #E53E3E !important;
+  color: #fff !important;
+}
+
+/* Dark-mode adjustments: soften harsh button backgrounds and icon btn hover */
+:root[data-theme="dark"] .mobil-overlay .mobil-modal .btn,
+:root[data-theme="dark"] .mobil-overlay .vehicle-modal .btn {
+  /* slightly transparent panels and less contrast */
+  background: color-mix(in srgb, var(--panel-bg) 86%, black 6%) !important;
+  color: var(--panel-text) !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45) !important;
+}
+:root[data-theme="dark"] .mobil-overlay .mobil-modal .btn.neutral,
+:root[data-theme="dark"] .mobil-overlay .vehicle-modal .btn.neutral {
+  background: color-mix(in srgb, var(--panel-bg) 92%, black 8%) !important;
+  color: var(--panel-text) !important;
+  box-shadow: none !important;
+}
+:root[data-theme="dark"] .mobil-overlay .mobil-modal .btn.primary,
+:root[data-theme="dark"] .mobil-overlay .vehicle-modal .btn.primary {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent, #16a34a) 86%, black 6%), var(--accent-dark, #059669)) !important;
+  color: #fff !important;
+}
+:root[data-theme="dark"] .mobil-modal-close {
+  background: color-mix(in srgb, var(--card-bg, #1e293b) 90%, black 6%);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* search/filter/clear controls in modal view adapt to dark theme */
+:root[data-theme="dark"] .mm-controls .mm-search .mm-icon-btn,
+:root[data-theme="dark"] .mm-controls .mm-filter .mm-icon-btn,
+:root[data-theme="dark"] .mm-controls .mm-filter-clear {
+  background: color-mix(in srgb, var(--panel-bg) 92%, black 6%);
+  color: var(--panel-text);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+:root[data-theme="dark"] .mm-controls .mm-search .mm-icon-btn:hover,
+:root[data-theme="dark"] .mm-controls .mm-filter .mm-icon-btn:hover,
+:root[data-theme="dark"] .mm-controls .mm-filter-clear:hover,
+:root[data-theme="dark"] .icon-btn:hover {
+  background: color-mix(in srgb, var(--panel-bg) 86%, black 8%);
+}
+
+/* ensure filter panel (portal) uses dark variables when page is dark */
+:root[data-theme="dark"] .mm-filter-panel {
+  background: color-mix(in srgb, var(--panel-bg) 96%, black 4%);
+  color: var(--panel-text);
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
+/* tombol disabled tetap terlihat jelas */
+.mobil-overlay .mobil-modal .btn[disabled] {
+  opacity: 0.6 !important;
+  filter: none !important;
+}
+
+/* Pastikan topbar punya padding kanan cukup untuk menghindari tumpang tindih close */
+.mobil-view-topbar {
+  padding-right: 110px; /* sesuaikan jika masih berdekatan */
+}
+
+/* spasi pada aksi kanan (agar tidak 'nempel' ke close) */
+.mobil-view-topbar-right { margin-right: -60px; }
+
+/* tambahkan sedikit prioritas pada icon-btn spacing jika masih rapat */
+.mobil-top-icons .icon-btn { margin-left: 10px; }
+
+/* ===== unified mobil modal (match HRD look) ===== */
+.mobil-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: flex;
+  align-items: center;            /* center like HRD */
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0,0,0,0.36);
+}
+
+/* modal shell */
+.mobil-modal,
+.vehicle-modal {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  min-width: 320px;
+  border-radius: 14px;
+  padding: 90px 22px 22px; /* was 56px - increased so avatar (132px) has room + gap */
+  background: var(--card-bg, #fff);
+  color: var(--panel-text);
+  box-shadow: 0 12px 40px rgba(2,10,18,0.22);
+  transition: transform 220ms cubic-bezier(.2,.9,.28,1), box-shadow 220ms ease, opacity 160ms ease;
+  overflow: visible;
+}
+
+/* close button */
+.mobil-modal .mobil-modal-close,
+.vehicle-modal .mobil-modal-close {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--card-bg, #fff);      /* follow theme background */
+  color: var(--panel-text);              /* follow theme text color */
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 260;
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--panel-text) 6%, rgba(2,6,23,0.08));
+  border: 1px solid color-mix(in srgb, var(--panel-text) 8%, rgba(0,0,0,0.04));
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+.mobil-modal-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--panel-text) 10%, rgba(2,6,23,0.12));
+  background: color-mix(in srgb, var(--card-bg) 88%, var(--panel-text) 6%);
+}
+
+.mobil-modal-close:focus {
+  outline: 3px solid color-mix(in srgb, var(--accent, #16a34a) 18%, transparent);
+  outline-offset: 2px;
+}
+
+/* avatar overlap like HRD */
+.mobil-modal-avatar {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.04);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.35);
+  border: 6px solid var(--card-bg, #fff);
+  overflow: hidden;
+  z-index: 300;
+}
+
+/* title + compact form */
+.mobil-modal h3,
+.vehicle-modal h3 { text-align:center; margin:6px 0 12px; font-size:18px; font-weight:600; }
+.mobil-modal h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.mobil-label { font-size:13px; color:var(--panel-text); margin-top:10px; display:block; }
+.mobil-input, .mobil-textarea, .mm-video-input {
+  width:100%;
+  height:40px;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.06);
+  background: var(--panel-bg);
+  margin-top:6px;
+  box-sizing: border-box;
+}
+.mobil-textarea { height: 96px; padding-top:10px; resize:vertical; }
+
+/* upload button + preview */
+.mm-upload-btn { display:block; width:100%; padding:10px 14px; margin-top:6px; border-radius:12px; font-weight:700; text-align:center; cursor:pointer; border:none; }
+.mobil-preview-wrap { margin-top:10px; display:flex; justify-content:center; }
+.mobil-preview { max-width:320px; max-height:180px; object-fit:contain; border-radius:8px; }
+
+/* modal actions */
+.mobil-modal-actions {
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:14px;
+}
+
+/* button overrides inside overlay */
+.mobil-overlay .mobil-modal .btn,
+.mobil-overlay .vehicle-modal .btn {
+  min-width: 72px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.08);
+}
+.mobil-overlay .mobil-modal .btn.primary { background: var(--accent,#16a34a); color:#fff; }
+.mobil-overlay .mobil-modal .btn.neutral { background: rgba(0,0,0,0.06); color:var(--panel-text); box-shadow:none; }
+.mobil-overlay .mobil-modal .btn.danger { background:#E53E3E; color:#fff; }
+
+/* responsive */
+@media (max-width: 420px) {
+  .mobil-overlay { padding: 16px; align-items: flex-start; padding-top: 48px; }
+  .mobil-modal, .vehicle-modal { max-width: 96vw; padding: 72px 16px 16px; border-radius:12px; }
+  .mobil-modal-avatar { width:110px; height:110px; transform: translate(-50%, -50%); }
+  .mobil-file-name { max-width:120px; font-size:12px; }
+}
+
+/* keep video preview classes (mm- prefix) */
+.mm-video-preview { display:flex; gap:12px; align-items:center; margin-top:10px; padding:8px; border-radius:8px; background: color-mix(in srgb, var(--panel-bg) 92%, black 4%); border:1px solid rgba(0,0,0,0.04); }
+.mm-video-thumb { width:280px; max-width:40%; height:auto; border-radius:6px; object-fit:cover; }
+
+/* file picker row */
+.mobil-file-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+/* styled choose file button (match mm-upload-btn / HRD look) */
+.mobil-upload-btn {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 88%, black 6%), var(--accent));
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(22,199,132,0.14);
+}
+
+/* small filename next to button */
+.mobil-file-name {
+  font-size: 13px;
+  color: var(--muted-text, #6b7280);
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* hide/remove the large bottom preview if present */
+.mobil-preview-wrap { display: none !important; }
+
+/* responsive tweak so avatar doesn't overlap too much on small screens */
+@media (max-width: 420px) {
+  .mobil-modal-avatar { width: 110px; height: 110px; transform:translate(-50%, -50%); }
+  .mobil-file-name { max-width:120px; font-size:12px; }
+}
+
+/* Confirm modal specific tweaks: lebih ruang atas, spacing dan tombol lebih besar */
+.mobil-modal.mobil-confirm {
+  max-width: 460px;            /* sedikit lebih lebar untuk pesan */
+  padding: 44px 28px 28px;     /* ruang atas lebih besar supaya proporsional */
+  border-radius: 14px;
+}
+
+.mobil-modal.mobil-confirm h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.mobil-modal.mobil-confirm p {
+  margin: 0 0 24px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* tombol layout dan ukuran */
+.mobil-modal.mobil-confirm .mobil-modal-actions,
+.mobil-modal.mobil-confirm > div > div[style] > div { /* fallback for inline structure */
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.mobil-modal.mobil-confirm .btn {
+  padding: 10px 20px;
+  min-width: 96px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* neutral / danger visual */
+.mobil-modal.mobil-confirm .btn.neutral {
+  background: #f3f4f6;
+  color: #374151;
+  box-shadow: none;
+  border: none;
+}
+
+.mobil-modal.mobil-confirm .btn.danger {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 20px rgba(239,68,68,0.12);
+}
+
+/* responsive: reduce padding on small screens */
+@media (max-width: 420px) {
+  .mobil-modal.mobil-confirm {
+    max-width: 92vw;
+    padding: 32px 18px 18px;
+  }
+  .mobil-modal.mobil-confirm .btn { min-width: 84px; padding: 8px 14px; }
+}
+
+/* input outline + accessible focus state */
+.mobil-input,
+.mobil-textarea,
+.mm-video-input {
+  transition: box-shadow .14s ease, outline .14s ease;
+}
+
+/* persistent subtle outline so inputs remain visible in dark theme (brighter) */
+.mobil-input,
+.mobil-textarea,
+.mm-video-input {
+  /* stronger ring based on theme text color */
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--panel-text) 14%, rgba(255,255,255,0.06));
+  /* fallback for browsers tanpa color-mix */
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.12);
+  transition: box-shadow .14s ease, outline .14s ease, background .14s ease;
+}
+
+/* stronger, more visible focus ring */
+.mobil-input:focus,
+.mobil-textarea:focus,
+.mm-video-input:focus,
+.mobil-input:focus-visible,
+.mobil-textarea:focus-visible,
+.mm-video-input:focus-visible {
+  outline: 4px solid color-mix(in srgb, var(--accent, #16a34a) 22%, rgba(255,255,255,0.02));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(22,163,74,0.18);
+}
+
+/* optionally keep hover subtle but visible */
+.mobil-input:hover:not(:focus),
+.mobil-textarea:hover:not(:focus),
+.mm-video-input:hover:not(:focus) {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.08);
+}
+
+/* horizontal draggable viewport + track (no buttons) */
+.mobil-carousel-viewport {
+  width: 100%;
+  overflow: hidden;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  margin-bottom: 12px;
+}
+
+.mobil-carousel-track {
+  display: flex;
+  transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  align-items: stretch;
+  height: auto;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* each page takes full viewport width */
+.mobil-carousel-page {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  padding: 0px;
+  margin-top: 12px;
+}
+
+/* grid inside page: 4 columns, 2 rows */
+.mobil-page-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 18px;
+  width: 100%;
+  align-items: stretch;
+}
+
+/* ensure cards fill grid cell */
+.mobil-page-grid > .mobil-card {
+  width: 100%;
+  height: 220px; /* fixed card height to avoid vertical scroll — tweak if needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* responsive: adjust rows/cols on smaller screens */
+@media (max-width: 1200px) {
+  .mobil-page-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 160px; }
+}
+@media (max-width: 900px) {
+  .mobil-page-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 160px; }
+}
+@media (max-width: 420px) {
+  .mobil-page-grid { grid-template-columns: 1fr; grid-auto-rows: 160px; gap: 12px; }
+}
+
+/* dragging cursor hints */
+.mobil-carousel-track.is-dragging { cursor: grabbing; }
+.mobil-carousel-track { cursor: grab; }
+
+/* small tweak: ensure mobil-card retains existing look inside grid */
+.mobil-card { flex: 1 1 auto; }
+/* rail area at bottom of viewport for dragging the pages */
+.mobil-carousel-rail {
+  width: 100%;
+  height: 88px;              /* area user can drag — sesuaikan (mis. 88px) */
+  margin-top: 12px;          /* jarak ke grid */
+  background: transparent;   /* keep invisible, or slight hint */
+  cursor: grab;
+  touch-action: pan-x;
+  -webkit-user-select: none;
+  user-select: none;
+  display: block;
+}
+
+/* visual hint when grabbing */
+.mobil-carousel-rail:active,
+.mobil-carousel-rail.is-dragging {
+  cursor: grabbing;
+}
+
+/* smaller rail on mobile */
+@media (max-width: 420px) {
+  .mobil-carousel-rail { height: 64px; margin-top: 10px; }
+}
+
+/* Prevent text selection / drag artifacts while interacting with carousel/rail */
+.mobil-carousel-viewport,
+.mobil-carousel-track,
+.mobil-carousel-rail,
+.mobil-page-grid,
+.mobil-card,
+.mobil-logo {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* also prevent browser image-drag ghost */
+.mobil-logo,
+.brand-logo {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* responsive vehicle modal form */
+.vehicle-modal {
+  max-width: 720px;
+  width: 92vw;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+/* grid: auto-fit columns with minimum comfortable width */
+.vehicle-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px 18px;
+  align-items: start;
+  margin-top: 8px;
+}
+
+/* file pickers / preview should span full width */
+.vehicle-form-grid .file-row-full {
+  grid-column: 1 / -1;
+}
+
+/* slightly compress inputs inside grid cells */
+.vehicle-form-grid .mobil-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* preview image sizing */
+.mobil-preview-wrap.file-row-full { display:flex; justify-content:center; padding-top:8px; }
+.mobil-preview { max-width: 320px; max-height: 180px; border-radius:8px; object-fit:cover; }
+
+/* ensure actions stay below grid */
+.mobil-modal .mobil-modal-actions { margin-top: 12px; display:flex; gap:12px; justify-content:center; }
+
+/* Vehicle popover (duplicated from HRD, namespaced) */
+.mobil-select-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-weight: 600;
+  justify-content: space-between;
+  box-shadow: 0 6px 18px var(--surface-elev);
+  overflow: hidden;
+}
+.mobil-select-btn.selected { border-color: var(--accent); }
+
+.mobil-select-caret { opacity: 0.9; margin-left: 8px; }
+
+.mobil-select-list {
+  background: var(--card-bg);
+  color: var(--panel-text);
+  border-radius: 10px;
+  box-shadow: 0 14px 36px rgba(3,10,18,0.12);
+  overflow: hidden;
+  z-index: 1400;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.mobil-select-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+.mobil-select-item:hover { background: rgba(0,0,0,0.04); color: var(--accent); }
+.mobil-select-item.selected { background: rgba(0,0,0,0.03); font-weight: 700; }
+
+/* make list scrollable when long */
+.mobil-select-list.popover--fixed { max-height: 320px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+/* hide native scrollbar but keep scrolling functional */
+.mobil-select-list.popover--fixed {
+  -ms-overflow-style: none;  /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.mobil-select-list.popover--fixed::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+/* ensure mobile-friendly sizing */
+@media (max-width: 420px) {
+  .mobil-select-list.popover--fixed { max-height: 220px; }
+}
+
+/* Remove large logo column in view modal and make vehicle area full width */
+.mobil-view-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* keep padding controlled by inline style if needed */
+}
+.mobil-view-left { display: none !important; }
+.mobil-view-right,
+.mobil-view-right.full { width: 100%; }
+
+/* adjust view-cars layout so it fills modal cleanly */
+.mobil-view-cars { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+
+/* small tweak: center the 'Tutup' button at bottom if needed */
+.mobil-modal-actions { display:flex; justify-content:center; gap:10px; margin-top:16px; }
+/* Dark-theme color overrides for brand view modal — softened/translucent for elegance */
+body[data-theme="dark"] .mobil-view-modal {
+  /* semi-transparent, less "black", subtle gradient for depth */
+  background: linear-gradient(180deg,
+    rgba(10, 14, 18, 0.46) 0%,
+    rgba(6, 12, 18, 0.36) 100%);
+  color: var(--panel-text, #e6eef6);
+  border: 1px solid rgba(255,255,255,0.04);
+  /* lighter, softer shadow so modal feels elevated but not harsh */
+  box-shadow: 0 12px 36px rgba(2,6,23,0.30);
+  /* subtle blur to let background bleed through slightly for elegance */
+  backdrop-filter: blur(6px) saturate(1.03);
+}
+
+/* Light-theme: make view modal translucent/soft so background bleeds through */
+body[data-theme="light"] .mobil-view-modal {
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.88) 0%,
+    rgba(250,250,250,0.78) 100%);
+  border: 1px solid rgba(2,6,23,0.04);
+  box-shadow: 0 12px 36px rgba(2,6,23,0.06);
+  backdrop-filter: blur(6px) saturate(1.02);
+}
+
+/* Close icon / button - theme aware and consistent */
+.mobil-view-modal .mobil-modal-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: inline-grid;
+  place-items: center;
+  font-size: 16px;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+/* Light theme close button */
+body[data-theme="light"] .mobil-view-modal .mobil-modal-close {
+  background: rgba(255,255,255,0.94);
+  color: var(--panel-text, #0f172a);
+  border: 1px solid rgba(2,6,23,0.04);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+}
+body[data-theme="light"] .mobil-view-modal .mobil-modal-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(2,6,23,0.08);
+}
+
+/* Dark theme close button */
+body[data-theme="dark"] .mobil-view-modal .mobil-modal-close {
+  background: rgba(255,255,255,0.06);
+  color: var(--panel-text, #e6eef6);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.36);
+}
+body[data-theme="dark"] .mobil-view-modal .mobil-modal-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.46);
+}
+
+/* Force responsive modal grid: prefer ~3 columns on wide modal, avoid 4 small columns */
+.mobil-view-modal .mobil-view-cars {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)) !important; /* ~3 per row on ~1100px modal */
+  gap: 14px !important;
+}
+
+/* smaller modal / narrow view: 2 columns */
+@media (max-width: 1100px) {
+  .mobil-view-modal .mobil-view-cars {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  }
+}
+
+/* mobile: single column */
+@media (max-width: 720px) {
+  .mobil-view-modal .mobil-view-cars {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ===== Edit Vehicle Modal Styles ===== */
+.vehicle-modal {
+  max-width: 1400px;
+  width: 98vw;
+  max-height: 98vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 20px;
+  background: var(--panel-bg);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(2,10,18,0.22);
+  position: relative;
+}
+
+.vehicle-modal h3 {
+  text-align: center;
+  margin: 0 0 16px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--panel-text);
+}
+
+/* Grid layout for form fields */
+.vehicle-form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 20px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+/* Full width file upload sections */
+.file-row-full {
+  grid-column: 1 / -1;
+  margin-bottom: 8px;
+}
+
+/* Desktop specific adjustments */
+@media (min-width: 1025px) {
+  .file-row-full {
+    margin-bottom: 10px;
+  }
+  
+  .vehicle-form-grid {
+    margin-bottom: 18px;
+  }
+  
+  .vehicle-modal .mobil-modal-actions {
+    margin-top: 18px;
+    padding-top: 14px;
+  }
+  
+  .vehicle-modal h3 {
+    margin-bottom: 18px;
+  }
+  
+  .mobil-preview-wrap {
+    margin-top: 8px;
+    padding: 6px;
+  }
+  
+  .mobil-file-row {
+    margin-top: 8px;
+  }
+  
+  .mobil-preview {
+    max-height: 140px;
+  }
+  
+  .mobil-preview-wrap video {
+    max-height: 120px;
+  }
+}
+
+/* File upload row styling */
+.mobil-file-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+/* Preview styling for images and videos */
+.mobil-preview-wrap {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+  padding: 4px;
+  background: rgba(0,0,0,0.02);
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.mobil-preview {
+  max-width: 100%;
+  max-height: 140px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* Video preview specific styling */
+.mobil-preview-wrap video {
+  max-height: 120px;
+  width: auto;
+}
+
+/* Form input styling */
+.vehicle-modal .mobil-input,
+.vehicle-modal .mobil-textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.vehicle-modal .mobil-input:focus,
+.vehicle-modal .mobil-textarea:focus {
+  outline: none;
+  border-color: var(--accent, #16a34a);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+}
+
+.vehicle-modal .mobil-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--panel-text);
+}
+
+/* Button styling in vehicle modal */
+.vehicle-modal .btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.vehicle-modal .btn.primary {
+  background: var(--accent, #16a34a);
+  color: #fff;
+}
+
+.vehicle-modal .btn.primary:hover {
+  background: color-mix(in srgb, var(--accent, #16a34a) 90%, black 10%);
+  transform: translateY(-1px);
+}
+
+.vehicle-modal .btn.neutral {
+  background: rgba(0,0,0,0.06);
+  color: var(--panel-text);
+}
+
+.vehicle-modal .btn.neutral:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.vehicle-modal .btn.danger {
+  background: #ef4444;
+  color: #fff;
+}
+
+.vehicle-modal .btn.danger:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+.vehicle-modal .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Modal actions */
+.vehicle-modal .mobil-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .vehicle-modal {
+    max-width: 98vw;
+    padding: 18px;
+  }
+  
+  .vehicle-form-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px 18px;
+    margin-bottom: 14px;
+  }
+  
+  .file-row-full {
+    margin-bottom: 10px;
+  }
+  
+  .mobil-file-row {
+    margin-top: 8px;
+  }
+  
+  .mobil-preview-wrap {
+    margin-top: 8px;
+    padding: 6px;
+  }
+  
+  .mobil-preview {
+    max-height: 140px;
+  }
+  
+  .mobil-preview-wrap video {
+    max-height: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .vehicle-modal {
+    max-width: 95vw;
+    padding: 14px;
+    max-height: 95vh;
+  }
+  
+  .vehicle-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 12px;
+    margin-bottom: 12px;
+  }
+  
+  .file-row-full {
+    margin-bottom: 8px;
+  }
+  
+  .mobil-file-row {
+    margin-top: 6px;
+  }
+  
+  .mobil-preview-wrap {
+    margin-top: 6px;
+    padding: 4px;
+  }
+  
+  .mobil-preview {
+    max-height: 120px;
+  }
+  
+  .mobil-preview-wrap video {
+    max-height: 100px;
+  }
+  
+  .vehicle-modal .mobil-modal-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .vehicle-modal .btn {
+    width: 100%;
+  }
+}
+
+/* Dark theme adjustments */
+body[data-theme="dark"] .vehicle-modal {
+  background: rgba(10, 14, 18, 0.95);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+body[data-theme="dark"] .vehicle-modal .mobil-input,
+body[data-theme="dark"] .vehicle-modal .mobil-textarea {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+  color: var(--panel-text);
+}
+
+body[data-theme="dark"] .vehicle-modal .mobil-preview-wrap {
+  background: rgba(255,255,255,0.02);
+  border-color: rgba(255,255,255,0.1);
+}
+
+/* Hover effect for clickable car thumb */
+.car-thumb-wrap:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+.car-thumb-wrap:hover .car-thumb {
+  filter: brightness(1.1);
+  transition: filter 0.2s ease;
+}

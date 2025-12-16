@@ -1,0 +1,31 @@
+:root {
+  /* Color Scheme */
+  --accent: #10b981;
+  --accent-dark: #059669;
+  
+  /* Light Theme (default) */
+  --app-bg: #f8fafc;
+  --panel-bg: #ffffff;
+  --panel-text: #1a1a1a;
+  --muted: rgba(0,0,0,0.6);
+  --card-bg: #ffffff;
+  
+  /* Search Input */
+  --search-input-bg: #fff;
+  --search-input-color: #0f172a;
+  --search-placeholder: var(--muted);
+}
+
+[data-theme="dark"] {
+  /* Dark Theme */
+  --app-bg: #0f172a;
+  --panel-bg: #1e293b;
+  --panel-text: #e6e6e6;
+  --muted: rgba(255,255,255,0.6);
+  --card-bg: #1e293b;
+  
+  /* Search Input - Dark */
+  --search-input-bg: #3b4a56;
+  --search-input-color: #e6f3f6;
+  --search-placeholder: var(--muted);
+}

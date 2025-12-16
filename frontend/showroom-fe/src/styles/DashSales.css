@@ -1,0 +1,301 @@
+/* DashSales scoped styles — cleaned, no Tailwind utility overrides */
+
+/* Smooth transitions reduce blink on theme change */
+.dashsales-container {
+  transition: background-color 200ms ease-in-out, color 160ms ease-in-out;
+  color: var(--panel-text, #111827);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.dashsales-ready {
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes avatarPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Card base (light mode defaults) */
+.dashsales-container .dashsales-top-card,
+.dashsales-container .dashsales-latest-card,
+.dashsales-container .dashsales-card,
+.dashsales-container .dashsales-latest-deal-card {
+  background-color: var(--panel-bg, #ffffff);
+  color: var(--panel-text, #111827);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: background-color 200ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+/* Top Card Animation */
+.dashsales-container .dashsales-top-card {
+  animation: slideDown 0.5s ease-out;
+}
+
+/* Top Cars Card Animation */
+.dashsales-container .dashsales-top-cars-card {
+  animation: slideRight 0.5s ease-out 0.1s both;
+}
+
+/* Latest deal cards - hover effect */
+.dashsales-container .dashsales-latest-deal-card {
+  transition: background-color 200ms ease, color 160ms ease, border-color 160ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.dashsales-container .dashsales-latest-deal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.dark .dashsales-container .dashsales-latest-deal-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Scoped text classes used in TSX (explicit, do not touch Tailwind utilities) */
+.dashsales-container .dashsales-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--panel-text, #111827);
+  transition: color 160ms ease;
+}
+
+.dashsales-container .dashsales-subtitle {
+  font-size: 0.875rem;
+  color: var(--muted, rgba(0,0,0,0.6));
+  transition: color 160ms ease;
+  font-weight: 500;
+}
+
+.dashsales-container .dashsales-label {
+  font-size: 0.75rem;
+  color: var(--muted, rgba(0,0,0,0.6));
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dashsales-container .dashsales-meta {
+  font-size: 0.875rem;
+  color: var(--muted, rgba(0,0,0,0.6));
+}
+
+.dashsales-container .dashsales-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--panel-text, #111827);
+}
+
+.dashsales-container .dashsales-value-lg {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--panel-text, #111827);
+}
+
+/* Avatar wrapper */
+.dashsales-container .dashsales-avatar {
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  box-shadow: var(--dash-avatar-shadow, 0 6px 18px rgba(2,6,23,0.06));
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  transition: box-shadow 150ms ease, background-color 150ms ease;
+  animation: avatarPop 0.5s ease-out;
+}
+
+/* Card min heights and spacing */
+.dashsales-container .dashsales-card {
+  min-height: 88px;
+}
+
+/* Chart containers styling */
+.dashsales-container .recharts-surface {
+  color: var(--panel-text, #111827) !important;
+}
+
+.dashsales-container .recharts-text {
+  fill: var(--panel-text, #111827) !important;
+}
+
+.dashsales-container .recharts-cartesian-grid-horizontal line,
+.dashsales-container .recharts-cartesian-grid-vertical line {
+  stroke: rgba(0, 0, 0, 0.05) !important;
+}
+
+.dark .dashsales-container .recharts-cartesian-grid-horizontal line,
+.dark .dashsales-container .recharts-cartesian-grid-vertical line {
+  stroke: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dashsales-container .recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+.dashsales-container .recharts-default-tooltip {
+  background: var(--panel-bg, #ffffff) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dark .dashsales-container .recharts-default-tooltip {
+  background: var(--panel-bg, #0b1220) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Responsive tweaks (mobile) */
+@media (max-width: 640px) {
+  .dashsales-container .dashsales-top-card { 
+    padding: 0.75rem;
+    flex-direction: column;
+  }
+  .dashsales-container .dashsales-avatar img { 
+    width: 128px; 
+    height: 128px; 
+  }
+}
+
+/* Grid responsive safe defaults */
+.dashsales-grid { display: grid; gap: 1.5rem; }
+
+/* Responsive for 1366x768 laptop screens */
+@media (max-width: 1400px) {
+  .dashsales-grid {
+    gap: 1rem;
+  }
+  
+  .dashsales-container .dashsales-title {
+    font-size: 1rem;
+  }
+  
+  .dashsales-container .dashsales-value {
+    font-size: 1rem;
+  }
+  
+  .dashsales-container .dashsales-value-lg {
+    font-size: 1.125rem;
+  }
+  
+  .dashsales-container .dashsales-card {
+    padding: 1rem;
+    min-height: 80px;
+  }
+  
+  .dashsales-container .dashsales-top-card {
+    padding: 1rem;
+  }
+}
+
+/* Theme: dark — only apply when .dark exists on root/html */
+.dark .dashsales-container .dashsales-top-card,
+.dark .dashsales-container .dashsales-latest-card,
+.dark .dashsales-container .dashsales-card,
+.dark .dashsales-container .dashsales-latest-deal-card {
+  background-color: var(--panel-bg, #0b1220);
+  color: var(--panel-text, #e6eef8);
+  border-color: rgba(255,255,255,0.04);
+}
+
+/* Dark: scoped text colors (higher contrast) */
+.dark .dashsales-container .dashsales-title { color: var(--panel-text, #eaf6ff); }
+.dark .dashsales-container .dashsales-subtitle,
+.dark .dashsales-container .dashsales-label,
+.dark .dashsales-container .dashsales-meta { color: var(--muted, rgba(255,255,255,0.12)); }
+.dark .dashsales-container .dashsales-value,
+.dark .dashsales-container .dashsales-value-lg { color: var(--panel-text, #eaf6ff); }
+
+/* Ensure svg/icon color follows theme accent or current text color */
+.dashsales-container svg, .dashsales-container .accent {
+  stroke: var(--accent, #3b82f6);
+  color: var(--accent, #3b82f6);
+}
+.dark .dashsales-container svg, .dark .dashsales-container .accent {
+  stroke: var(--accent, #86b9ff);
+  color: var(--accent, #86b9ff);
+}
+
+/* Override Tailwind color utilities inside dashsales so they follow theme vars */
+.dashsales-container .text-blue-500,
+.dashsales-container .text-blue-400 {
+  color: var(--accent, #3b82f6) !important;
+}
+.dashsales-container .text-green-500 {
+  color: var(--accent-green, #10b981) !important;
+}
+.dashsales-container .text-purple-500 {
+  color: var(--accent-purple, #8b5cf6) !important;
+}
+
+/* Make avatar background adapt to theme (prefer variables over tailwind gradient) */
+.dashsales-container .dashsales-avatar {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+}
+.dark .dashsales-container .dashsales-avatar {
+  background: linear-gradient(180deg, rgba(2,6,23,0.06), transparent);
+}
+
+
+/* Keep any additional card-specific spacing hooks */
+.dashsales-container .dashsales-card-payments { }
+.dashsales-container .dashsales-card-latestdeal { }
+.dashsales-container .dashsales-card-customers { }
+.dashsales-container .dashsales-card-orders { }
+
+/* Ensure no global utility classes are overridden here */

@@ -1,0 +1,121 @@
+.cicilan-detail-container {
+  margin-top: 32px;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 12px;
+  border-left: 4px solid #7c3aed;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+}
+
+.cicilan-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.cicilan-detail-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #7c3aed;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.cicilan-detail-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.cicilan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.cicilan-item {
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.cicilan-item:hover {
+  border-color: #7c3aed;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+}
+
+.cicilan-item-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.cicilan-item-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.cicilan-item-value.accent {
+  color: #7c3aed;
+}
+
+.cicilan-item-value.success {
+  color: #059669;
+}
+
+.cicilan-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 13px;
+}
+
+.cicilan-summary-row:last-child {
+  border-bottom: none;
+}
+
+.cicilan-summary-label {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.cicilan-summary-value {
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.cicilan-summary-value.highlight {
+  color: #7c3aed;
+  font-size: 15px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .cicilan-detail-container {
+    padding: 16px;
+  }
+
+  .cicilan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cicilan-detail-title {
+    font-size: 14px;
+  }
+}
