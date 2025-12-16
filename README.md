@@ -230,3 +230,13 @@ MIT License - see LICENSE file for details
 
 **Last Updated**: December 16, 2025
 **Version**: 1.0.0
+
+PREVIEW
+Dashboard Sales
+<img width="1600" height="779" alt="3" src="https://github.com/user-attachments/assets/5fbaee6a-9adb-4a58-a347-4571dd90a10b" />
+
+Dashboard HRD
+<img width="1599" height="777" alt="2" src="https://github.com/user-attachments/assets/0095feb0-41ec-4ffd-a6cf-564d79c852f0" />
+
+Dashboard Finance
+<img width="1600" height="779" alt="4" src="https://github.com/user-attachments/assets/035e50f4-3097-4d86-a0c3-940ef487c57c" />
